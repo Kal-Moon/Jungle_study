@@ -12,6 +12,9 @@
 - 권영진 교수님 Pintos Lab slides (Pintos_1~4.pdf) — 정글 LMS 링크
 - 코치님 강의 노트 (2026-10-16, Project 2 큰 그림) — `Kal-Moon/Jungle_Pintos` 저장소 `week8/study-notes/2026-10-16-coach-lecture.md`
 - 팀 분담 타임라인 (10/18~10/21) — 같은 저장소 `week8/study-notes/2026-10-18-team-timeline.md`
+- 8주차 팀 코드: `cocham/JungleWeek08` `main` @ `8ea4088` (10/21 기준 `fork`·rox 미구현)
+- 준비 자료: [Pintos 복습 노트](https://claude.ai/artifact/2thcCz6zE3UcY47im2n23T) 메뉴 P0~P7 (`menus/p0.md` ~ `menus/p7.md`). 메뉴 1은 10/21 설명 원문이 남아 있지 않아 새로 썼고, 3번 소제목 제목을 「언제 일어나나」로 맞춰 두었다.
+- 11/5 최종 점검 퀴즈: 같은 아티팩트의 `menus/final.md` (16문항). 점수만 아래 진도에 남긴다.
 
 ### 자료 분석: 교육 기관이 원하는 것
 
@@ -59,4 +62,4 @@
 
 ## 6. 보류한 확인 문제
 
-- 포인터 검증 없이 `write(1, (void *) 0x8004000000, 100)`을 호출하면 page fault가 나는가? "누가 읽느냐"로 설명하기. → 메뉴 3(유저 포인터 검증)에서 다시 풀기. (2026-10-21 오답)
+- 포인터 검증 없이 `write(1, (void *) 0x8004000000, 100)`을 호출하면 page fault가 나는가? "누가 읽느냐"로 설명하기. → 메뉴 3(유저 포인터 검증)에서 다시 풀기. (2026-10-21 오답) — 준비 자료 P3 확인 1에 실어 둠.

@@ -13,6 +13,8 @@
   - `week7/Priority-Scheduling-Behaviors.md` — 우선순위 스케줄링에서 바뀌어야 할 동작
   - `week7/study-notes/semaphore-restaurant.md` — 맛집 비유로 본 세마포어
   - `week7/week7_issues_complete.csv` — 테스트별 이슈 목록
+- 7주차 팀 코드: `pinn99k/jungle_pintos` `dev` @ `61fac76` (Alarm, 우선순위, donation 체인. MLFQS 구현 없음)
+- 준비 자료: [Pintos 복습 노트](https://claude.ai/artifact/2thcCz6zE3UcY47im2n23T) 메뉴 T0~T5 (`menus/t0.md` ~ `menus/t5.md`). 다시 묻기 #7~#18이 어느 확인 문제로 이어지는지는 `menus/weak.md`.
 
 ### 자료 분석: 교육 기관이 원하는 것
 
@@ -29,6 +31,7 @@
 
 - 메뉴를 빠짐없이 위에서부터 순서대로 진행한다. 하루 단위 목표는 따로 정하지 않는다.
 - 참고 속도: 메뉴 6개 / 7일. T4(Donation)·T5(MLFQS)가 가장 무겁다.
+- T5(MLFQS)는 팀 코드에 구현이 없고 노트에도 기록이 없다 → 복습이 아니라 처음 배우는 속도로 잡는다.
 
 | # | 메뉴 | 관련 테스트 | 상태 |
 |---|---|---|---|
