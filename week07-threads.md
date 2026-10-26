@@ -37,7 +37,7 @@
 |---|---|---|---|
 | T0 | 큰 그림: 스레드 구조와 상태, `schedule()`·문맥 전환, 인터럽트 끄기 | — | ✅ 완료 (10/26) |
 | T1 | Alarm Clock: busy waiting → 재우고 깨우기 | `alarm-*` 6개 | ✅ 완료 (10/26) |
-| T2 | 동기화: race condition, semaphore / lock / condition variable | (T3·T4의 바탕) | ⬜ |
+| T2 | 동기화: race condition, semaphore / lock / condition variable | (T3·T4의 바탕) | 🔄 진행 중 (10/26 시작) |
 | T3 | 우선순위 스케줄링: 고르는 순서, 선점, 깨우는 순서 | `priority-fifo`, `-preempt`, `-change`, `-sema`, `-condvar`, `alarm-priority` | ⬜ |
 | T4 | Priority Donation: 우선순위 역전, 여러 기부, 연쇄 기부, 복원 | `priority-donate-*` 7개 | ⬜ |
 | T5 | MLFQS: nice, recent_cpu, load_avg, 고정소수점 | `mlfqs-*` 9개 | ⬜ |
@@ -62,6 +62,7 @@
 - 다시 묻기 #11(상태·필드·리스트 구분), #16(정렬과 `break`): 이번에는 맞음.
 - **T1 완료 (2026-10-26).**
 - **다음에 이어 할 위치: T2 동기화 시작.**
+- T2 (동기화) 시작. 시작 전 질문 "동기화가 Alarm Clock과 연관되나?" → 답변(인터럽트 끄기, 재우고 깨우기 = 세마포어 속 동작). inbox 대기 질문 없음. 설명 1번 소제목부터 읽기.
 
 ## 4. 관심 키워드
 
