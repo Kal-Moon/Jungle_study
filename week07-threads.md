@@ -37,8 +37,8 @@
 |---|---|---|---|
 | T0 | 큰 그림: 스레드 구조와 상태, `schedule()`·문맥 전환, 인터럽트 끄기 | — | ✅ 완료 (10/26) |
 | T1 | Alarm Clock: busy waiting → 재우고 깨우기 | `alarm-*` 6개 | ✅ 완료 (10/26) |
-| T2 | 동기화: race condition, semaphore / lock / condition variable | (T3·T4의 바탕) | 🔄 진행 중 (10/26 시작) |
-| T3 | 우선순위 스케줄링: 고르는 순서, 선점, 깨우는 순서 | `priority-fifo`, `-preempt`, `-change`, `-sema`, `-condvar`, `alarm-priority` | ⬜ |
+| T2 | 동기화: race condition, semaphore / lock / condition variable | (T3·T4의 바탕) | 🔄 종합 문제만 남음 |
+| T3 | 우선순위 스케줄링: 고르는 순서, 선점, 깨우는 순서 | `priority-fifo`, `-preempt`, `-change`, `-sema`, `-condvar`, `alarm-priority` | 🔄 진행 중 (10/26 시작) |
 | T4 | Priority Donation: 우선순위 역전, 여러 기부, 연쇄 기부, 복원 | `priority-donate-*` 7개 | ⬜ |
 | T5 | MLFQS: nice, recent_cpu, load_avg, 고정소수점 | `mlfqs-*` 9개 | ⬜ |
 
@@ -73,6 +73,8 @@
   - 무엇을 언제: 락과 세마포어(0)의 쓰임을 바꿔 말함 → "여는 사람이 잠근 사람과 같은가?"로 재설명, 2번 더 틀린 뒤 정답.
   - 다시 묻기 #9(lost update), #18(`cond->waiters` 원소): 이번에는 맞음.
 - **다음에 이어 할 위치**: T2 종합 문제(준비 종합 + 당일 추가 `t2-06`·`t2-11` + 안 푼 `t2-01`).
+- 사용자 요청으로 T2 종합은 미뤄 두고 **T3 (우선순위 스케줄링) 시작**. inbox 대기 질문 없음. 설명 1~6번 보여 줌.
+- **다음에 이어 할 위치**: T3 설명 읽는 중. T2 종합 문제는 아직 남아 있음.
 
 ## 4. 관심 키워드
 
