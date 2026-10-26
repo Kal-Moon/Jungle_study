@@ -36,7 +36,7 @@
 | # | 메뉴 | 관련 테스트 | 상태 |
 |---|---|---|---|
 | T0 | 큰 그림: 스레드 구조와 상태, `schedule()`·문맥 전환, 인터럽트 끄기 | — | ✅ 완료 (10/26) |
-| T1 | Alarm Clock: busy waiting → 재우고 깨우기 | `alarm-*` 6개 | ⬜ |
+| T1 | Alarm Clock: busy waiting → 재우고 깨우기 | `alarm-*` 6개 | 🔄 진행 중 (10/26 시작) |
 | T2 | 동기화: race condition, semaphore / lock / condition variable | (T3·T4의 바탕) | ⬜ |
 | T3 | 우선순위 스케줄링: 고르는 순서, 선점, 깨우는 순서 | `priority-fifo`, `-preempt`, `-change`, `-sema`, `-condvar`, `alarm-priority` | ⬜ |
 | T4 | Priority Donation: 우선순위 역전, 여러 기부, 연쇄 기부, 복원 | `priority-donate-*` 7개 | ⬜ |
@@ -53,6 +53,7 @@
 - 서술형 다시 풀기: 상태 전환은 모두 맞음. "있는 곳"을 상태 이름으로 답함 → 재설명 후 확인 문제 정답. 해제 시점: 1회 오답(Project 2 `wait`의 부모·자식과 섞음) → 재설명 후 정답.
 - **T0 완료 (2026-10-26).**
 - **다음에 이어 할 위치: T1 Alarm Clock 시작.**
+- T1 (Alarm Clock) 시작. inbox 대기 질문 없음. 설명 1번 소제목부터 읽기.
 
 ## 4. 관심 키워드
 
