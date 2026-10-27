@@ -39,7 +39,7 @@
 | T1 | Alarm Clock: busy waiting → 재우고 깨우기 | `alarm-*` 6개 | ✅ 완료 (10/26) |
 | T2 | 동기화: race condition, semaphore / lock / condition variable | (T3·T4의 바탕) | ✅ 완료 (10/26) |
 | T3 | 우선순위 스케줄링: 고르는 순서, 선점, 깨우는 순서 | `priority-fifo`, `-preempt`, `-change`, `-sema`, `-condvar`, `alarm-priority` | ✅ 완료 (10/27) |
-| T4 | Priority Donation: 우선순위 역전, 여러 기부, 연쇄 기부, 복원 | `priority-donate-*` 7개 | ⬜ |
+| T4 | Priority Donation: 우선순위 역전, 여러 기부, 연쇄 기부, 복원 | `priority-donate-*` 7개 | 🔄 진행 중 (10/27 시작) |
 | T5 | MLFQS: nice, recent_cpu, load_avg, 고정소수점 | `mlfqs-*` 9개 | ⬜ |
 
 ## 3. 진도
@@ -99,6 +99,7 @@
 - 앞으로 볼 약점: 양보 판단(엄격하게 높은가)과 줄 서는 자리(`>`)를 구분하기, `sema_up`의 세 역할(깨우는 쪽·깨워지는 쪽·먼저 도는 쪽), RUNNING 스레드는 어느 리스트에도 없음.
 - **T3 완료 (2026-10-27).** 오늘 추가된 문제 13개(`2026-10-27-t3-01` ~ `t3-13`).
 - **다음에 이어 할 위치**: T4 Priority Donation 시작.
+- T4 (Priority Donation) 시작. inbox 대기 질문 없음. 설명 1~9번 보여 줌.
 
 ## 4. 관심 키워드
 
