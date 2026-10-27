@@ -8,7 +8,7 @@
 | 항목 | 내용 |
 |---|---|
 | 진행 중인 주차 | 9주차 (10/23~10/29) — Week 7 복습: Project 1 Threads |
-| 진행 중인 메뉴 | T3 우선순위 스케줄링 — 10/26 시작, 10/27 확인 1~3 끝. 다음: 확인 4 (T0·T1·T2 10/26 완료) |
+| 진행 중인 메뉴 | T4 Priority Donation — 다음 시작 (T0·T1·T2 10/26, T3 10/27 완료) |
 | 관심 키워드 | 없음 |
 | 적용 중인 공부법 | 공부법 1 + 공부법 2 |
 
@@ -43,5 +43,5 @@ Project 2의 `wait`/`exit`가 Project 1의 세마포어 위에서 동작하므�
 
 | 주차 | 주제 | 진행 기간 | 파일 | 상태 |
 |---|---|---|---|---|
-| Week 7 | Project 1: Threads (복습) | 9주차 10/23(금) ~ 10/29(목) | [week07-threads.md](week07-threads.md) | 진행 중 (T0·T1·T2 완료, T3 진행 중) |
+| Week 7 | Project 1: Threads (복습) | 9주차 10/23(금) ~ 10/29(목) | [week07-threads.md](week07-threads.md) | 진행 중 (T0~T3 완료) |
 | Week 8 | Project 2: User Programs (복습) | 10주차 10/30(금) ~ 11/05(목) | [week08-user-programs.md](week08-user-programs.md) | 일부 진행 (10/21: 메뉴 0 완료, 메뉴 1 진행 중) |
