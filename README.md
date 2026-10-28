@@ -8,7 +8,7 @@
 | 항목 | 내용 |
 |---|---|
 | 진행 중인 주차 | 9주차 (10/23~10/29) — Week 7 복습: Project 1 Threads |
-| 진행 중인 메뉴 | 구현 D: Priority Donation 직접 설계·구현 — D2 진행 중 (D0·D1 10/28 완료, `JungleWeek9-10` 저장소) — T5 MLFQS는 그 뒤 (T0~T4 완료) |
+| 진행 중인 메뉴 | 구현 D: Priority Donation 직접 설계·구현 — D2 설계 완료, 사용자 구현 후 D3 (D0~D2 10/28, `JungleWeek9-10` 저장소) — T5 MLFQS는 그 뒤 (T0~T4 완료) |
 | 관심 키워드 | 없음 |
 | 적용 중인 공부법 | 공부법 1 + 공부법 2 |
 

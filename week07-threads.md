@@ -51,7 +51,7 @@
 |---|---|---|---|
 | D0 | 바탕: 우선순위 스케줄링 (고르는 순서, 선점, 대기자 깨우는 순서) | `priority-fifo`·`-preempt`·`-change`·`-sema`·`-condvar` | ✅ 이미 구현 (10/28 확인) |
 | D1 | 자료 구조 설계: 스레드에 무엇을 더 저장하나 | — | ✅ 완료 (10/28) |
-| D2 | 한 번 기부 (`lock_acquire`에서 주기, `lock_release`에서 돌려받기) | `priority-donate-one` | 🔄 진행 중 |
+| D2 | 한 번 기부 (`lock_acquire`에서 주기, `lock_release`에서 돌려받기) | `priority-donate-one` | ✅ 설계 완료 (10/28), 구현은 사용자 |
 | D3 | 여러 기부 (락 여러 개, 일부만 회수) | `-multiple`·`-multiple2` | ⬜ |
 | D4 | 연쇄 기부 (기다리는 사람이 또 기다릴 때) | `-nest`·`-chain` | ⬜ |
 | D5 | 기부 중 `thread_set_priority`, 세마포어·조건 변수 순서 | `-lower`·`-sema`·`priority-condvar` | ⬜ |
@@ -159,6 +159,8 @@
   - 5번(`lock_release` 순서): (다) 먼저면 같은 값이라 양보 안 됨 → 맞음. 질문 "값을 0으로 만들어야 하나?" → 아니고 순서를 바꾸면 됨으로 답함. 확인 문제((가)·(나) 순서 바꾸기): ② 정답. 5번 끝.
   - 6번(인터럽트): 꺼야 한다 → 맞음. 범위를 "락을 빼고 받을 때까지"로 답해 절반(함수 둘을 넘나드는 한 구간처럼 말함). `lock_acquire`의 ㉠ 구간·`lock_release`의 (가)(나) 구간 두 개로 재설명, `holder` 확인도 구간 안이어야 함. 확인 문제(확인 후 끄면?): ② 정답.
 - D2 설명 1~6번 끝. 종합 문제(두 함수 단계 쓰기 + `donate-one` 출력 순서) 냄.
+- D2 종합(2문항): 맞음 2. 카드 배치 `lock_acquire` A C D E F B / `lock_release` A G H I J B — 끄는 구간을 함수 끝까지 넓힘(`sema_down`·`sema_up`이 꺼진 채 불려도 되므로 유효), 함정 카드 K(`original_priority` 덮어쓰기)를 안 씀. `donate-one` 빈칸 32·33 맞음, 먼저 도는 스레드 acquire2 맞음(main이 `sema_up` 전에 31로 내려가 있다는 연결은 보충).
+- **D2 완료 (2026-10-28).** 다음: 사용자가 D2를 직접 구현해 `priority-donate-one` 확인 → D3 여러 기부.
 
 ## 4. 관심 키워드
 
