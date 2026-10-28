@@ -166,6 +166,7 @@
   - ① 첫 시도: 필드 4개를 `struct thread` 안이 아니라 아래 **함수 선언**(`int original_priority (void);` 등)으로 씀 → D1 종합과 같은 "필드 vs 함수" 패턴. 기존 `priority`와 `thread_get_priority`를 나란히 비교해 재설명.
   - ① 다시 쓰기: 네 줄 맞음(타입 + 이름 + `;`). 새 `struct thread {}`를 따로 만들 뻔함 → 기존 구조체 안 `priority` 아래에 넣는 것으로 정리. 로컬 사본에서 컴파일 성공(`synch.h` include 없이 포인터로 충분). **① 완료.**
   - ② 첫 시도: `original_priority(priority);`, `donations(list);`처럼 필드를 **함수 호출** 모양으로 씀(필드 vs 함수 패턴 세 번째). 바로 위 `t->status = THREAD_BLOCKED;`와 비교해 `t->필드 = 값;`·`list_init (&t->필드);` 모양으로 재설명.
+  - ② 두 번째: `t->priority = original_priority;`(`=` 왼쪽·오른쪽 뒤바뀜, 오른쪽 `original_priority`는 `t->` 없이 씀), `donations(list);` 그대로. `donation_elem`·`wait_on_lock` 줄은 지움(맞음). `=`의 왼쪽 = 칸, 오른쪽 = 값으로 재설명, 빈칸 틀 제공.
 
 ## 4. 관심 키워드
 
