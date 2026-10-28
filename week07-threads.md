@@ -50,8 +50,8 @@
 | # | 메뉴 | 관련 테스트 | 상태 |
 |---|---|---|---|
 | D0 | 바탕: 우선순위 스케줄링 (고르는 순서, 선점, 대기자 깨우는 순서) | `priority-fifo`·`-preempt`·`-change`·`-sema`·`-condvar` | ✅ 이미 구현 (10/28 확인) |
-| D1 | 자료 구조 설계: 스레드에 무엇을 더 저장하나 | — | 🔄 진행 중 |
-| D2 | 한 번 기부 (`lock_acquire`에서 주기, `lock_release`에서 돌려받기) | `priority-donate-one` | ⬜ |
+| D1 | 자료 구조 설계: 스레드에 무엇을 더 저장하나 | — | ✅ 완료 (10/28) |
+| D2 | 한 번 기부 (`lock_acquire`에서 주기, `lock_release`에서 돌려받기) | `priority-donate-one` | 🔄 진행 중 |
 | D3 | 여러 기부 (락 여러 개, 일부만 회수) | `-multiple`·`-multiple2` | ⬜ |
 | D4 | 연쇄 기부 (기다리는 사람이 또 기다릴 때) | `-nest`·`-chain` | ⬜ |
 | D5 | 기부 중 `thread_set_priority`, 세마포어·조건 변수 순서 | `-lower`·`-sema`·`priority-condvar` | ⬜ |
@@ -144,6 +144,10 @@
   - 재설명(필드 = 메모, 함수 = 동작 / 앞에서 정한 5개 정리) 후 짝 맞추기 문제로 다시 냄.
   - 짝 맞추기: 절반. (가) `wait_on_lock` 맞음. (나) `donations`만 고르고 H의 `donation_elem`을 빠뜨림. (다) `original_priority`만 고르고 `donations`(남은 기부자 읽기)·`priority`(결과 쓰기)를 빠뜨림 → 재설명 후 다시 냄.
   - 다시 풀기(L이 B만 풂): 절반. (2) 32·읽는 필드 2개 맞음. (1) H를 빼는 것과 `donation_elem`을 빼는 것은 맞음, 골라낼 때 확인하는 필드(기부자의 `wait_on_lock == B`)를 빠뜨림 → 재설명 후 다시 냄.
+  - 다시 풀기(A·B·C 중 A 반납): 정답. P·R을 `wait_on_lock`으로 골라내고, 남은 Q(45)로 다시 계산.
+- 앞으로 볼 약점: 필드(메모)와 함수(동작) 구분, 줄(`donations`, 받는 쪽)과 고리(`donation_elem`, 주는 쪽)를 함께 쓰기, `priority` = 기부 반영 값.
+- **D1 완료 (2026-10-28).**
+- D2 (한 번 기부) 시작. 설계 질문 1~5번 보여 줌.
 
 ## 4. 관심 키워드
 
