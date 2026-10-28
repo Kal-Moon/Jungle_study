@@ -163,6 +163,7 @@
 - **D2 완료 (2026-10-28).** 다음: 사용자가 D2를 직접 구현해 `priority-donate-one` 확인 → D3 여러 기부.
 - 질문 "donation 테스트가 뭐가 있나" → 7개와 메뉴 대응 답변. 확인 문제는 사용자 요청으로 건너뜀.
 - 요청: 확인 문제 없이 **하나씩 구현**하기. 구현 순서: ① `thread.h` 필드 → ② `init_thread` → ③ 다시 계산 함수 → ④ `lock_acquire` → ⑤ `lock_release` → ⑥ `donate-one` 테스트. 사용자가 코드를 쓰고 Claude는 설계대로인지만 확인.
+  - ① 첫 시도: 필드 4개를 `struct thread` 안이 아니라 아래 **함수 선언**(`int original_priority (void);` 등)으로 씀 → D1 종합과 같은 "필드 vs 함수" 패턴. 기존 `priority`와 `thread_get_priority`를 나란히 비교해 재설명.
 
 ## 4. 관심 키워드
 
