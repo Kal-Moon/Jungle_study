@@ -164,6 +164,7 @@
 - 질문 "donation 테스트가 뭐가 있나" → 7개와 메뉴 대응 답변. 확인 문제는 사용자 요청으로 건너뜀.
 - 요청: 확인 문제 없이 **하나씩 구현**하기. 구현 순서: ① `thread.h` 필드 → ② `init_thread` → ③ 다시 계산 함수 → ④ `lock_acquire` → ⑤ `lock_release` → ⑥ `donate-one` 테스트. 사용자가 코드를 쓰고 Claude는 설계대로인지만 확인.
   - ① 첫 시도: 필드 4개를 `struct thread` 안이 아니라 아래 **함수 선언**(`int original_priority (void);` 등)으로 씀 → D1 종합과 같은 "필드 vs 함수" 패턴. 기존 `priority`와 `thread_get_priority`를 나란히 비교해 재설명.
+  - ① 다시 쓰기: 네 줄 맞음(타입 + 이름 + `;`). 새 `struct thread {}`를 따로 만들 뻔함 → 기존 구조체 안 `priority` 아래에 넣는 것으로 정리. 로컬 사본에서 컴파일 성공(`synch.h` include 없이 포인터로 충분). **① 완료.**
 
 ## 4. 관심 키워드
 
