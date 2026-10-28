@@ -167,6 +167,7 @@
   - ① 다시 쓰기: 네 줄 맞음(타입 + 이름 + `;`). 새 `struct thread {}`를 따로 만들 뻔함 → 기존 구조체 안 `priority` 아래에 넣는 것으로 정리. 로컬 사본에서 컴파일 성공(`synch.h` include 없이 포인터로 충분). **① 완료.**
   - ② 첫 시도: `original_priority(priority);`, `donations(list);`처럼 필드를 **함수 호출** 모양으로 씀(필드 vs 함수 패턴 세 번째). 바로 위 `t->status = THREAD_BLOCKED;`와 비교해 `t->필드 = 값;`·`list_init (&t->필드);` 모양으로 재설명.
   - ② 두 번째: `t->priority = original_priority;`(`=` 왼쪽·오른쪽 뒤바뀜, 오른쪽 `original_priority`는 `t->` 없이 씀), `donations(list);` 그대로. `donation_elem`·`wait_on_lock` 줄은 지움(맞음). `=`의 왼쪽 = 칸, 오른쪽 = 값으로 재설명, 빈칸 틀 제공.
+  - ② 세 번째: `list_init` 모양은 맞음, `&t.donations`로 `.`/`->` 혼동. `original_priority = t->priority;`(왼쪽 `t->` 없음, 오른쪽이 아직 0인 `t->priority`) → `t->tf.rsp`로 `.`/`->` 구분, `t->priority = priority;` 복사 후 칸 이름만 바꾸기로 안내.
 
 ## 4. 관심 키워드
 
