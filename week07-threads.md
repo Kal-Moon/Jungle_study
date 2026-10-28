@@ -168,6 +168,8 @@
   - ② 첫 시도: `original_priority(priority);`, `donations(list);`처럼 필드를 **함수 호출** 모양으로 씀(필드 vs 함수 패턴 세 번째). 바로 위 `t->status = THREAD_BLOCKED;`와 비교해 `t->필드 = 값;`·`list_init (&t->필드);` 모양으로 재설명.
   - ② 두 번째: `t->priority = original_priority;`(`=` 왼쪽·오른쪽 뒤바뀜, 오른쪽 `original_priority`는 `t->` 없이 씀), `donations(list);` 그대로. `donation_elem`·`wait_on_lock` 줄은 지움(맞음). `=`의 왼쪽 = 칸, 오른쪽 = 값으로 재설명, 빈칸 틀 제공.
   - ② 세 번째: `list_init` 모양은 맞음, `&t.donations`로 `.`/`->` 혼동. `original_priority = t->priority;`(왼쪽 `t->` 없음, 오른쪽이 아직 0인 `t->priority`) → `t->tf.rsp`로 `.`/`->` 구분, `t->priority = priority;` 복사 후 칸 이름만 바꾸기로 안내.
+  - ② 네 번째: `list_init(&t->donations);` 맞음. 첫 줄은 `priority = original_priority;`로 또 왼쪽·오른쪽 뒤바뀜 → 문법 문제라 정답 줄(`t->original_priority = priority;`)을 보여 주고 왜 다른지 설명. 로컬 사본 컴파일 성공. **② 완료.**
+- 앞으로 볼 약점(C 문법): 필드 vs 함수 호출, `=`의 왼쪽(칸)·오른쪽(값), 포인터는 `->`.
 
 ## 4. 관심 키워드
 
