@@ -191,6 +191,7 @@
 - D5 일부 먼저: `thread_set_priority` 고치기. 다시 계산 함수를 불러야 한다는 것은 스스로 맞힘. 첫 줄은 `new_priority = …->priority;` → `priority = base_prioirty;`로 두 번 모두 `=` 방향이 뒤집힘(② `init_thread`와 같은 패턴) → "바뀌는 쪽이 왼쪽"으로 재설명, 정답 줄 보여 줌.
   - 고친 뒤 사용자 환경 테스트: `priority-fifo`·`-sema`·`-condvar`·`-donate-lower` PASS, `-donate-chain` FAIL(연쇄 없음, 예상대로).
 - 현재: Project 1 priority 테스트 중 `donate-nest`·`donate-chain`(D4)만 남음. **다음: D4 연쇄 기부 설계.**
+- D4 시작: 설명 1~5번 보여 줌. 2번(어떻게 따라가나)에 "`donation`·`donation_elem`을 보고 찾는다"로 답함 → 틀림(줄은 뒤쪽 = 나에게 준 사람, 연쇄는 앞쪽 = `wait_lock → holder`). 방향 그림으로 재설명.
 - ⑥ 테스트: 컨테이너에 QEMU를 설치해 로컬 사본(사용자 코드 + 남은 한 곳 고친 형태)으로 돌림.
   - PASS: `priority-donate-one`·`-multiple`·`-multiple2`·`-sema`, `priority-change`·`-preempt`, `alarm-multiple`·`alarm-priority`
   - FAIL: `priority-fifo`·`-sema`·`-condvar`(D0에서 통과하던 것), `priority-donate-nest`·`-chain`(D4 대상), `-lower`(D5 대상)
