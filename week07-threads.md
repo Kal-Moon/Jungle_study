@@ -52,9 +52,9 @@
 | D0 | 바탕: 우선순위 스케줄링 (고르는 순서, 선점, 대기자 깨우는 순서) | `priority-fifo`·`-preempt`·`-change`·`-sema`·`-condvar` | ✅ 이미 구현 (10/28 확인) |
 | D1 | 자료 구조 설계: 스레드에 무엇을 더 저장하나 | — | ✅ 완료 (10/28) |
 | D2 | 한 번 기부 (`lock_acquire`에서 주기, `lock_release`에서 돌려받기) | `priority-donate-one` | ✅ 구현 완료 (10/29, `donate-one` PASS) |
-| D3 | 여러 기부 (락 여러 개, 일부만 회수) | `-multiple`·`-multiple2` | ⬜ |
+| D3 | 여러 기부 (락 여러 개, 일부만 회수) | `-multiple`·`-multiple2` | ✅ D2 설계로 통과 (10/29) |
 | D4 | 연쇄 기부 (기다리는 사람이 또 기다릴 때) | `-nest`·`-chain` | ⬜ |
-| D5 | 기부 중 `thread_set_priority`, 세마포어·조건 변수 순서 | `-lower`·`-sema`·`priority-condvar` | ⬜ |
+| D5 | 기부 중 `thread_set_priority`, 세마포어·조건 변수 순서 | `-lower`·`-sema`·`priority-condvar` | ✅ 통과 (10/29) |
 
 ## 3. 진도
 
@@ -189,6 +189,8 @@
   - 사용자 환경 테스트: 처음엔 `pintos: command not found`(터미널에 `activate` 안 잡힘)로 출력 없음 → `source …/pintos/activate` 후 `make check`.
   - 결과(사용자 환경, 제 예상과 같음): PASS `alarm-*` 6개, `priority-change`·`-preempt`·`alarm-priority`, `priority-donate-one`·`-multiple`·`-multiple2`·`-sema`. FAIL `priority-fifo`·`-sema`·`-condvar`·`-donate-lower`(`thread_set_priority`), `-donate-nest`(연쇄), `-donate-chain`(둘 다), `mlfqs-*`(T5).
 - D5 일부 먼저: `thread_set_priority` 고치기. 다시 계산 함수를 불러야 한다는 것은 스스로 맞힘. 첫 줄은 `new_priority = …->priority;` → `priority = base_prioirty;`로 두 번 모두 `=` 방향이 뒤집힘(② `init_thread`와 같은 패턴) → "바뀌는 쪽이 왼쪽"으로 재설명, 정답 줄 보여 줌.
+  - 고친 뒤 사용자 환경 테스트: `priority-fifo`·`-sema`·`-condvar`·`-donate-lower` PASS, `-donate-chain` FAIL(연쇄 없음, 예상대로).
+- 현재: Project 1 priority 테스트 중 `donate-nest`·`donate-chain`(D4)만 남음. **다음: D4 연쇄 기부 설계.**
 - ⑥ 테스트: 컨테이너에 QEMU를 설치해 로컬 사본(사용자 코드 + 남은 한 곳 고친 형태)으로 돌림.
   - PASS: `priority-donate-one`·`-multiple`·`-multiple2`·`-sema`, `priority-change`·`-preempt`, `alarm-multiple`·`alarm-priority`
   - FAIL: `priority-fifo`·`-sema`·`-condvar`(D0에서 통과하던 것), `priority-donate-nest`·`-chain`(D4 대상), `-lower`(D5 대상)
