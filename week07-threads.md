@@ -193,6 +193,7 @@
 - 현재: Project 1 priority 테스트 중 `donate-nest`·`donate-chain`(D4)만 남음. **다음: D4 연쇄 기부 설계.**
 - D4 시작: 설명 1~5번 보여 줌. 2번(어떻게 따라가나)에 "`donation`·`donation_elem`을 보고 찾는다"로 답함 → 틀림(줄은 뒤쪽 = 나에게 준 사람, 연쇄는 앞쪽 = `wait_lock → holder`). 방향 그림으로 재설명.
   - 다시: 다음 주인 `t - wait_lock -> holder`(`->` 대신 `-` 하나, 방향은 맞음). 멈추는 조건을 "cur? priority?"로 답함 → 틀림, `wait_lock == NULL`(F 카드·`memset`)로 재설명.
+  - 반복 빈칸: 대입 줄·`t = holder` 맞음. 조건 오른쪽(`NULL`)과 `holder` 값(`t->wait_lock->holder`)을 서로 바꿔 씀 → 재설명.
 - ⑥ 테스트: 컨테이너에 QEMU를 설치해 로컬 사본(사용자 코드 + 남은 한 곳 고친 형태)으로 돌림.
   - PASS: `priority-donate-one`·`-multiple`·`-multiple2`·`-sema`, `priority-change`·`-preempt`, `alarm-multiple`·`alarm-priority`
   - FAIL: `priority-fifo`·`-sema`·`-condvar`(D0에서 통과하던 것), `priority-donate-nest`·`-chain`(D4 대상), `-lower`(D5 대상)
