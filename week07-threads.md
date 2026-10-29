@@ -183,6 +183,7 @@
   - ④ 두 번째: A·B 고침(맞음). 남은 것: 조건 `lock_holder`(`->` 대신 `_`), ②에 `t ->`를 앞에 덧붙임, ③을 `cur->lock->holder->priority`로 쓰고 대입 줄을 지움(본문 없는 `if`) → "식은 있는 변수(`cur`, `lock`)에서 시작한다"로 재설명.
   - ④ 세 번째: 조건·②·대입 줄 모두 맞음. 남은 것은 ③ 비교 왼쪽 `cur->holder` 하나(→ `cur->priority`). 로컬 사본에 고친 형태로 넣어 컴파일 성공. **④ 완료(한 곳 고치면).**
   - 고친 함수 받음: `cur->priority`로 고쳐 정답. **④ 완료.** ⑤ `lock_release` 빈칸 틀 냄.
+  - ⑤ 첫 시도: I·J·B 맞음, 흐름(훑기 → 다시 계산 → 깨우기) 맞음. 고칠 곳: A `()` 없음(④와 같은 실수), 줄에 `cur->` 없음·오타, `list_entry` 세 번째 인자를 줄 이름(`donation`)으로 씀, `wiat_lock` 오타, 다음 `e`를 `donation_elem`/`countinue`로 씀(`list_remove`/`list_next`), H를 선언 모양 `(struct thread *t)`으로 부름·오타.
 
 ## 4. 관심 키워드
 
