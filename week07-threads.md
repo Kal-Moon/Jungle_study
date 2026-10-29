@@ -196,6 +196,7 @@
   - 반복 빈칸: 대입 줄·`t = holder` 맞음. 조건 오른쪽(`NULL`)과 `holder` 값(`t->wait_lock->holder`)을 서로 바꿔 씀 → 재설명.
   - 넣을 위치: 기존 "한 명에게 기부" 두 줄을 반복으로 **바꿔 넣음** → 맞음(첫 바퀴가 같은 일). 로컬 사본에서 priority 테스트 13개 전부 PASS(`donate-nest`·`-chain` 포함). 남은 설계 포인트: 깊이 제한, 중간에 `holder == NULL`일 때.
   - 사용자 환경: `priority-donate-*` 7개 모두 PASS. **D4 완료 (2026-10-29). 구현 D 테스트 목표 달성.** 남은 것(선택): 깊이 제한·중간 `holder == NULL` 설계 질문, 전체 `make check` 확인.
+- 최종 확인(10/29): 사용자의 `thread.c`·`synch.c`·`thread.h`가 로컬 사본과 로직이 같음을 확인하고, 로컬 사본에 주석을 달아 alarm 6 + priority 12 = 18개 테스트 PASS. 주석 단 코드는 채팅으로 전달(커밋은 사용자). 남겨 둔 검토 사항: `thread_set_priority`의 다시 계산 중 인터럽트, 연쇄 중간 `holder == NULL`, T5에서 `thread_mlfqs`일 때 기부 끄기.
 - ⑥ 테스트: 컨테이너에 QEMU를 설치해 로컬 사본(사용자 코드 + 남은 한 곳 고친 형태)으로 돌림.
   - PASS: `priority-donate-one`·`-multiple`·`-multiple2`·`-sema`, `priority-change`·`-preempt`, `alarm-multiple`·`alarm-priority`
   - FAIL: `priority-fifo`·`-sema`·`-condvar`(D0에서 통과하던 것), `priority-donate-nest`·`-chain`(D4 대상), `-lower`(D5 대상)
