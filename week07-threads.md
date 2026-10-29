@@ -51,7 +51,7 @@
 |---|---|---|---|
 | D0 | 바탕: 우선순위 스케줄링 (고르는 순서, 선점, 대기자 깨우는 순서) | `priority-fifo`·`-preempt`·`-change`·`-sema`·`-condvar` | ✅ 이미 구현 (10/28 확인) |
 | D1 | 자료 구조 설계: 스레드에 무엇을 더 저장하나 | — | ✅ 완료 (10/28) |
-| D2 | 한 번 기부 (`lock_acquire`에서 주기, `lock_release`에서 돌려받기) | `priority-donate-one` | ✅ 설계 완료 (10/28), 구현은 사용자 |
+| D2 | 한 번 기부 (`lock_acquire`에서 주기, `lock_release`에서 돌려받기) | `priority-donate-one` | ✅ 구현 완료 (10/29, `donate-one` PASS) |
 | D3 | 여러 기부 (락 여러 개, 일부만 회수) | `-multiple`·`-multiple2` | ⬜ |
 | D4 | 연쇄 기부 (기다리는 사람이 또 기다릴 때) | `-nest`·`-chain` | ⬜ |
 | D5 | 기부 중 `thread_set_priority`, 세마포어·조건 변수 순서 | `-lower`·`-sema`·`priority-condvar` | ⬜ |
@@ -184,6 +184,11 @@
   - ④ 세 번째: 조건·②·대입 줄 모두 맞음. 남은 것은 ③ 비교 왼쪽 `cur->holder` 하나(→ `cur->priority`). 로컬 사본에 고친 형태로 넣어 컴파일 성공. **④ 완료(한 곳 고치면).**
   - 고친 함수 받음: `cur->priority`로 고쳐 정답. **④ 완료.** ⑤ `lock_release` 빈칸 틀 냄.
   - ⑤ 첫 시도: I·J·B 맞음, 흐름(훑기 → 다시 계산 → 깨우기) 맞음. 고칠 곳: A `()` 없음(④와 같은 실수), 줄에 `cur->` 없음·오타, `list_entry` 세 번째 인자를 줄 이름(`donation`)으로 씀, `wiat_lock` 오타, 다음 `e`를 `donation_elem`/`countinue`로 씀(`list_remove`/`list_next`), H를 선언 모양 `(struct thread *t)`으로 부름·오타.
+  - ⑤ 두 번째: H 줄(`thread_recomput_priority (&cur -> priority)` → 오타, `int` 주소를 넘김) 하나만 남음. 나머지 모두 맞음. **⑤ 완료(한 곳 고치면).**
+- ⑥ 테스트: 컨테이너에 QEMU를 설치해 로컬 사본(사용자 코드 + 남은 한 곳 고친 형태)으로 돌림.
+  - PASS: `priority-donate-one`·`-multiple`·`-multiple2`·`-sema`, `priority-change`·`-preempt`, `alarm-multiple`·`alarm-priority`
+  - FAIL: `priority-fifo`·`-sema`·`-condvar`(D0에서 통과하던 것), `priority-donate-nest`·`-chain`(D4 대상), `-lower`(D5 대상)
+  - D0 회귀 원인: `thread_set_priority`가 `priority`만 바꾸고 `base_priority`는 그대로 → `thread_create` 안의 `allocate_tid`가 `tid_lock`을 풀 때 다시 계산되며 31로 되돌아감. D5 설계로 해결 예정.
 
 ## 4. 관심 키워드
 
