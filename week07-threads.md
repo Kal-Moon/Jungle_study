@@ -176,6 +176,7 @@
   - `compare_donation_priority` 고침: 정답(`<`). `priority_less` 아래에 둠.
   - `thread_recompute_priority` 첫 시도(의사 코드): 단계 순서(되돌리기 → 비었나 → 최대 찾기 → 올리기) 맞음. 문법: 함수 머리 없음, `base_priority`에 `t->` 없음, 빈 리스트를 `== NULL`로 검사, `list_max`를 부르지 않고 함수 이름끼리 `<` 비교, 함수를 값처럼 대입 → 기존 코드 줄을 가리키는 빈칸 틀로 재설명.
   - 빈칸 채우기: 맞음 3(`t->base_priority`, `list_entry`의 `donation_elem`, 마지막 대입) / 고칠 곳 5(`viod`, 인자 `int new_priority`, `!list_empty`로 조건 뒤집힘, `&donation`에 `t->` 없음·오타, 비교 오른쪽 `compare_donation->priority`) → 줄별 설명.
+  - 세 번째: 인자·`!` 제거·비교 고침. 남은 것은 오타 두 개(`&donatio`(+`t->` 없음), `retrun`). 비교 오른쪽 `t->base_priority`는 이 시점에 `t->priority`와 같아 맞음. 로컬 사본에 오타를 고친 형태로 넣어 컴파일 성공(`thread.h` 선언 2줄 포함). **③ 완료.**
 
 ## 4. 관심 키워드
 
