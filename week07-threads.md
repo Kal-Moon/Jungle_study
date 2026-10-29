@@ -188,6 +188,7 @@
   - H 줄 고치기: `recomput` 오타 → `&cur`(포인터의 주소) → `cur`로 정답. **⑤ 완료.** 사용자가 직접 테스트하기로 함.
   - 사용자 환경 테스트: 처음엔 `pintos: command not found`(터미널에 `activate` 안 잡힘)로 출력 없음 → `source …/pintos/activate` 후 `make check`.
   - 결과(사용자 환경, 제 예상과 같음): PASS `alarm-*` 6개, `priority-change`·`-preempt`·`alarm-priority`, `priority-donate-one`·`-multiple`·`-multiple2`·`-sema`. FAIL `priority-fifo`·`-sema`·`-condvar`·`-donate-lower`(`thread_set_priority`), `-donate-nest`(연쇄), `-donate-chain`(둘 다), `mlfqs-*`(T5).
+- D5 일부 먼저: `thread_set_priority` 고치기. 다시 계산 함수를 불러야 한다는 것은 스스로 맞힘. 첫 줄은 `new_priority = …->priority;` → `priority = base_prioirty;`로 두 번 모두 `=` 방향이 뒤집힘(② `init_thread`와 같은 패턴) → "바뀌는 쪽이 왼쪽"으로 재설명, 정답 줄 보여 줌.
 - ⑥ 테스트: 컨테이너에 QEMU를 설치해 로컬 사본(사용자 코드 + 남은 한 곳 고친 형태)으로 돌림.
   - PASS: `priority-donate-one`·`-multiple`·`-multiple2`·`-sema`, `priority-change`·`-preempt`, `alarm-multiple`·`alarm-priority`
   - FAIL: `priority-fifo`·`-sema`·`-condvar`(D0에서 통과하던 것), `priority-donate-nest`·`-chain`(D4 대상), `-lower`(D5 대상)
