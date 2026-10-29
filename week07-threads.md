@@ -170,6 +170,7 @@
   - ② 세 번째: `list_init` 모양은 맞음, `&t.donations`로 `.`/`->` 혼동. `original_priority = t->priority;`(왼쪽 `t->` 없음, 오른쪽이 아직 0인 `t->priority`) → `t->tf.rsp`로 `.`/`->` 구분, `t->priority = priority;` 복사 후 칸 이름만 바꾸기로 안내.
   - ② 네 번째: `list_init(&t->donations);` 맞음. 첫 줄은 `priority = original_priority;`로 또 왼쪽·오른쪽 뒤바뀜 → 문법 문제라 정답 줄(`t->original_priority = priority;`)을 보여 주고 왜 다른지 설명. 로컬 사본 컴파일 성공. **② 완료.**
 - 앞으로 볼 약점(C 문법): 필드 vs 함수 호출, `=`의 왼쪽(칸)·오른쪽(값), 포인터는 `->`.
+- ③ 시작: 함수 이름은 7주차 팀 코드(`pinn99k/jungle_pintos` `dev` @ `61fac76`)를 따르기로 함 → 다시 계산 `thread_recompute_priority`, 기부자 비교 `compare_donation_priority`. 필드 이름은 지금 것 유지.
 
 ## 4. 관심 키워드
 
