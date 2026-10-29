@@ -53,7 +53,7 @@
 | D1 | 자료 구조 설계: 스레드에 무엇을 더 저장하나 | — | ✅ 완료 (10/28) |
 | D2 | 한 번 기부 (`lock_acquire`에서 주기, `lock_release`에서 돌려받기) | `priority-donate-one` | ✅ 구현 완료 (10/29, `donate-one` PASS) |
 | D3 | 여러 기부 (락 여러 개, 일부만 회수) | `-multiple`·`-multiple2` | ✅ D2 설계로 통과 (10/29) |
-| D4 | 연쇄 기부 (기다리는 사람이 또 기다릴 때) | `-nest`·`-chain` | ⬜ |
+| D4 | 연쇄 기부 (기다리는 사람이 또 기다릴 때) | `-nest`·`-chain` | ✅ 통과 (10/29) |
 | D5 | 기부 중 `thread_set_priority`, 세마포어·조건 변수 순서 | `-lower`·`-sema`·`priority-condvar` | ✅ 통과 (10/29) |
 
 ## 3. 진도
@@ -195,6 +195,7 @@
   - 다시: 다음 주인 `t - wait_lock -> holder`(`->` 대신 `-` 하나, 방향은 맞음). 멈추는 조건을 "cur? priority?"로 답함 → 틀림, `wait_lock == NULL`(F 카드·`memset`)로 재설명.
   - 반복 빈칸: 대입 줄·`t = holder` 맞음. 조건 오른쪽(`NULL`)과 `holder` 값(`t->wait_lock->holder`)을 서로 바꿔 씀 → 재설명.
   - 넣을 위치: 기존 "한 명에게 기부" 두 줄을 반복으로 **바꿔 넣음** → 맞음(첫 바퀴가 같은 일). 로컬 사본에서 priority 테스트 13개 전부 PASS(`donate-nest`·`-chain` 포함). 남은 설계 포인트: 깊이 제한, 중간에 `holder == NULL`일 때.
+  - 사용자 환경: `priority-donate-*` 7개 모두 PASS. **D4 완료 (2026-10-29). 구현 D 테스트 목표 달성.** 남은 것(선택): 깊이 제한·중간 `holder == NULL` 설계 질문, 전체 `make check` 확인.
 - ⑥ 테스트: 컨테이너에 QEMU를 설치해 로컬 사본(사용자 코드 + 남은 한 곳 고친 형태)으로 돌림.
   - PASS: `priority-donate-one`·`-multiple`·`-multiple2`·`-sema`, `priority-change`·`-preempt`, `alarm-multiple`·`alarm-priority`
   - FAIL: `priority-fifo`·`-sema`·`-condvar`(D0에서 통과하던 것), `priority-donate-nest`·`-chain`(D4 대상), `-lower`(D5 대상)
