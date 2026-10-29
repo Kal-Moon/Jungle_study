@@ -198,6 +198,7 @@
   - 사용자 환경: `priority-donate-*` 7개 모두 PASS. **D4 완료 (2026-10-29). 구현 D 테스트 목표 달성.** 남은 것(선택): 깊이 제한·중간 `holder == NULL` 설계 질문, 전체 `make check` 확인.
 - 최종 확인(10/29): 사용자의 `thread.c`·`synch.c`·`thread.h`가 로컬 사본과 로직이 같음을 확인하고, 로컬 사본에 주석을 달아 alarm 6 + priority 12 = 18개 테스트 PASS. 주석 단 코드는 채팅으로 전달(커밋은 사용자). 남겨 둔 검토 사항: `thread_set_priority`의 다시 계산 중 인터럽트, 연쇄 중간 `holder == NULL`, T5에서 `thread_mlfqs`일 때 기부 끄기.
   - 사용자가 주석을 세 파일에 반영 → 확인 완료(빠진 곳 없음, 빈 줄 하나만 다름). 커밋은 사용자가 직접.
+  - 주석 붙여 넣다 `thread.h`의 `elem` 두 줄이 지워져 컴파일 에러(Claude가 확인 때 놓침) → 다시 넣고 사용자 환경에서 Alarm 6 + Priority 12 = **18개 모두 PASS** (10/29).
 - ⑥ 테스트: 컨테이너에 QEMU를 설치해 로컬 사본(사용자 코드 + 남은 한 곳 고친 형태)으로 돌림.
   - PASS: `priority-donate-one`·`-multiple`·`-multiple2`·`-sema`, `priority-change`·`-preempt`, `alarm-multiple`·`alarm-priority`
   - FAIL: `priority-fifo`·`-sema`·`-condvar`(D0에서 통과하던 것), `priority-donate-nest`·`-chain`(D4 대상), `-lower`(D5 대상)
