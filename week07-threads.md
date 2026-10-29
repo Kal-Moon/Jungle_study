@@ -40,7 +40,7 @@
 | T2 | 동기화: race condition, semaphore / lock / condition variable | (T3·T4의 바탕) | ✅ 완료 (10/26) |
 | T3 | 우선순위 스케줄링: 고르는 순서, 선점, 깨우는 순서 | `priority-fifo`, `-preempt`, `-change`, `-sema`, `-condvar`, `alarm-priority` | ✅ 완료 (10/27) |
 | T4 | Priority Donation: 우선순위 역전, 여러 기부, 연쇄 기부, 복원 | `priority-donate-*` 7개 | ✅ 완료 (10/28) |
-| T5 | MLFQS: nice, recent_cpu, load_avg, 고정소수점 | `mlfqs-*` 9개 | ⬜ |
+| T5 | MLFQS: nice, recent_cpu, load_avg, 고정소수점 | `mlfqs-*` 9개 | 🔄 진행 중 (10/29 시작) |
 
 ### 구현 D: Priority Donation 직접 설계·구현 (2026-10-28 추가)
 
@@ -203,6 +203,10 @@
   - PASS: `priority-donate-one`·`-multiple`·`-multiple2`·`-sema`, `priority-change`·`-preempt`, `alarm-multiple`·`alarm-priority`
   - FAIL: `priority-fifo`·`-sema`·`-condvar`(D0에서 통과하던 것), `priority-donate-nest`·`-chain`(D4 대상), `-lower`(D5 대상)
   - D0 회귀 원인: `thread_set_priority`가 `priority`만 바꾸고 `base_priority`는 그대로 → `thread_create` 안의 `allocate_tid`가 `tid_lock`을 풀 때 다시 계산되며 31로 되돌아감. D5 설계로 해결 예정.
+
+### T5 MLFQS (10/29~)
+
+- 10/29 시작. 공부법 1 + 2. 아티팩트 `inbox`에 T5 대기 질문 없음. 1번 소제목(왜 또 다른 스케줄러인가)부터 읽기 시작.
 
 ## 4. 관심 키워드
 
