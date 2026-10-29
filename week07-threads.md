@@ -186,6 +186,8 @@
   - ⑤ 첫 시도: I·J·B 맞음, 흐름(훑기 → 다시 계산 → 깨우기) 맞음. 고칠 곳: A `()` 없음(④와 같은 실수), 줄에 `cur->` 없음·오타, `list_entry` 세 번째 인자를 줄 이름(`donation`)으로 씀, `wiat_lock` 오타, 다음 `e`를 `donation_elem`/`countinue`로 씀(`list_remove`/`list_next`), H를 선언 모양 `(struct thread *t)`으로 부름·오타.
   - ⑤ 두 번째: H 줄(`thread_recomput_priority (&cur -> priority)` → 오타, `int` 주소를 넘김) 하나만 남음. 나머지 모두 맞음. **⑤ 완료(한 곳 고치면).**
   - H 줄 고치기: `recomput` 오타 → `&cur`(포인터의 주소) → `cur`로 정답. **⑤ 완료.** 사용자가 직접 테스트하기로 함.
+  - 사용자 환경 테스트: 처음엔 `pintos: command not found`(터미널에 `activate` 안 잡힘)로 출력 없음 → `source …/pintos/activate` 후 `make check`.
+  - 결과(사용자 환경, 제 예상과 같음): PASS `alarm-*` 6개, `priority-change`·`-preempt`·`alarm-priority`, `priority-donate-one`·`-multiple`·`-multiple2`·`-sema`. FAIL `priority-fifo`·`-sema`·`-condvar`·`-donate-lower`(`thread_set_priority`), `-donate-nest`(연쇄), `-donate-chain`(둘 다), `mlfqs-*`(T5).
 - ⑥ 테스트: 컨테이너에 QEMU를 설치해 로컬 사본(사용자 코드 + 남은 한 곳 고친 형태)으로 돌림.
   - PASS: `priority-donate-one`·`-multiple`·`-multiple2`·`-sema`, `priority-change`·`-preempt`, `alarm-multiple`·`alarm-priority`
   - FAIL: `priority-fifo`·`-sema`·`-condvar`(D0에서 통과하던 것), `priority-donate-nest`·`-chain`(D4 대상), `-lower`(D5 대상)
