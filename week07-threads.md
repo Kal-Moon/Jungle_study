@@ -178,6 +178,7 @@
   - 빈칸 채우기: 맞음 3(`t->base_priority`, `list_entry`의 `donation_elem`, 마지막 대입) / 고칠 곳 5(`viod`, 인자 `int new_priority`, `!list_empty`로 조건 뒤집힘, `&donation`에 `t->` 없음·오타, 비교 오른쪽 `compare_donation->priority`) → 줄별 설명.
   - 세 번째: 인자·`!` 제거·비교 고침. 남은 것은 오타 두 개(`&donatio`(+`t->` 없음), `retrun`). 비교 오른쪽 `t->base_priority`는 이 시점에 `t->priority`와 같아 맞음. 로컬 사본에 오타를 고친 형태로 넣어 컴파일 성공(`thread.h` 선언 2줄 포함). **③ 완료.**
   - 비교 함수 이름 정리: 사용자가 `priority_less`→`priority_compare`, `cond_priority_less`→`cond_priority_compare`로 바꿈(5곳·2곳 모두 맞음). 확인 중 발견: `init_thread`가 옛 줄(`priority = original_priority;`, `&t->donations`)로 돌아가 있음, `thread.h`에 새 함수 선언 2줄 없음 → 알려 줌.
+  - 사용자가 두 군데 고침. ④ `lock_acquire` 시작(빈칸 틀).
 
 ## 4. 관심 키워드
 
