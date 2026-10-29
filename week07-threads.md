@@ -171,6 +171,7 @@
   - ② 네 번째: `list_init(&t->donations);` 맞음. 첫 줄은 `priority = original_priority;`로 또 왼쪽·오른쪽 뒤바뀜 → 문법 문제라 정답 줄(`t->original_priority = priority;`)을 보여 주고 왜 다른지 설명. 로컬 사본 컴파일 성공. **② 완료.**
 - 앞으로 볼 약점(C 문법): 필드 vs 함수 호출, `=`의 왼쪽(칸)·오른쪽(값), 포인터는 `->`.
 - ③ 시작: 함수 이름은 7주차 팀 코드(`pinn99k/jungle_pintos` `dev` @ `61fac76`)를 따르기로 함 → 다시 계산 `thread_recompute_priority`, 기부자 비교 `compare_donation_priority`. 필드 이름도 팀 이름으로 바꿈: `original_priority`→`base_priority`, `donations`→`donation`, `wait_on_lock`→`wait_lock` (`donation_elem`은 같음). 로컬 사본 반영·컴파일 성공.
+  - ③ 질문 답: 고리 = `donation_elem` 맞음. `priority_less`를 그대로 쓰면 "우선순위가 변경될 수 있다"고 답함(실제: `elem` 기준으로 주소를 거꾸로 빼서 엉뚱한 메모리를 스레드로 읽음). 두 비교 함수의 차이를 "`donation_priority`만 비교 / `base_priority`와 비교"로 답함(없는 필드, 계산과 비교를 섞음) → 차이는 `list_entry`의 세 번째 인자 하나뿐이라고 재설명.
 
 ## 4. 관심 키워드
 
