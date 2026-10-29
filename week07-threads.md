@@ -180,6 +180,7 @@
   - 비교 함수 이름 정리: 사용자가 `priority_less`→`priority_compare`, `cond_priority_less`→`cond_priority_compare`로 바꿈(5곳·2곳 모두 맞음). 확인 중 발견: `init_thread`가 옛 줄(`priority = original_priority;`, `&t->donations`)로 돌아가 있음, `thread.h`에 새 함수 선언 2줄 없음 → 알려 줌.
   - 사용자가 두 군데 고침. ④ `lock_acquire` 시작(빈칸 틀).
   - ④ 첫 시도: ①(`cur->wait_lock = lock`)·F(`cur->wait_lock = NULL`) 맞음. 고칠 곳: A `intr_disable`에 `()` 없음, C 조건에 없는 이름 `acquire_lock`, ②③에 없는 변수 `t`(주인 = `lock->holder`, 고리 = `cur`의 것), B를 `intr_enable;`(괄호 없음 + 이전 상태 복원이 아니라 무조건 켜기).
+  - ④ 두 번째: A·B 고침(맞음). 남은 것: 조건 `lock_holder`(`->` 대신 `_`), ②에 `t ->`를 앞에 덧붙임, ③을 `cur->lock->holder->priority`로 쓰고 대입 줄을 지움(본문 없는 `if`) → "식은 있는 변수(`cur`, `lock`)에서 시작한다"로 재설명.
 
 ## 4. 관심 키워드
 
