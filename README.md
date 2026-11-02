@@ -8,7 +8,7 @@
 | 항목 | 내용 |
 |---|---|
 | 진행 중인 주차 | 10주차 (10/30~11/05) — Week 8 복습: Project 2 User Programs |
-| 진행 중인 메뉴 | P2 시스템 콜 흐름 — 1번 소제목부터 (P0 11/1, P1 11/2 완료) · (멈춤) 구현 D' Donation 혼자 다시 구현, T5 MLFQS 1번 소제목 |
+| 진행 중인 메뉴 | P2 시스템 콜 흐름 — 11/2 시작, 1번 소제목 읽는 중 (P0 11/1, P1 11/2 완료) · (멈춤) 구현 D' Donation 혼자 다시 구현, T5 MLFQS 1번 소제목 |
 | 관심 키워드 | 없음 |
 | 적용 중인 공부법 | 공부법 1 + 공부법 2 |
 
@@ -44,4 +44,4 @@ Project 2의 `wait`/`exit`가 Project 1의 세마포어 위에서 동작하므�
 | 주차 | 주제 | 진행 기간 | 파일 | 상태 |
 |---|---|---|---|---|
 | Week 7 | Project 1: Threads (복습) | 9주차 10/23(금) ~ 10/29(목) | [week07-threads.md](week07-threads.md) | 멈춤 (T0~T4 완료, T5·구현 D' 멈춤) |
-| Week 8 | Project 2: User Programs (복습) | 10주차 10/30(금) ~ 11/05(목) | [week08-user-programs.md](week08-user-programs.md) | 진행 중 (10/30 처음부터 다시, P0·P1 완료, P2 다음) |
+| Week 8 | Project 2: User Programs (복습) | 10주차 10/30(금) ~ 11/05(목) | [week08-user-programs.md](week08-user-programs.md) | 진행 중 (10/30 처음부터 다시, P0·P1 완료, P2 진행 중) |
