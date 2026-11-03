@@ -8,13 +8,13 @@
 | 항목 | 내용 |
 |---|---|
 | 진행 중인 주차 | 9~10주차 남은 기간 (11/3~11/5 저녁 전) — Project 3 VM · Project 4 FS **개념 공부** (코드 구현 없음) |
-| 진행 중인 메뉴 | V1 페이지의 종류와 Lazy Loading — 끝까지 읽음, 종합 문제 진행 중 (V0 완료) · (멈춤) P2 복습 P3 유저 포인터 검증, 구현 D' Donation 혼자 다시 구현, T5 MLFQS 1번 소제목 |
+| 진행 중인 메뉴 | V2 페이지 폴트 처리 흐름과 스택 성장 — 1번 소제목부터 (V0·V1 완료) · (멈춤) P2 복습 P3 유저 포인터 검증, 구현 D' Donation 혼자 다시 구현, T5 MLFQS 1번 소제목 |
 | 관심 키워드 | 없음 |
 | 적용 중인 공부법 | 공부법 1 + 공부법 2 |
 
 ## 새 대화에서 이어 하기
 
-- 새 대화를 열고 "공부법 1, 2로 VM V0 이어 하자"처럼 말하면 된다. Claude는 이 README → 해당 주차 파일 → (있으면) 아티팩트의 그 메뉴 원고 순서로 읽는다.
+- 새 대화를 열고 "공부법 1, 2로 VM V2 이어 하자"처럼 말하면 된다. Claude는 이 README → 해당 주차 파일 → (있으면) 아티팩트의 그 메뉴 원고 순서로 읽는다.
 - **VM·FS 개념 공부(11/3~)**: 새 대화에서 "공부법 1, 2로 VM V0 이어 하자"(메뉴만 바꿔서)라고 말하면 된다. Claude는 이 README → `week09-10-virtual-memory.md`(FS면 `project4-file-system.md`)의 「다음 위치」 → [VM·FS 개념 노트](https://claude.ai/artifact/6CnQXicJwAHkiFhGEvi1D8)의 `menus/guide.md`(진행 규칙) → `menus/<메뉴>.md`(설명 원고, 없으면 새로 써서 추가) → `refs/OS_review.pdf`(교수님 PPT, 그 메뉴 쪽만) 순서로 읽는다. PDF를 다시 올릴 필요 없다.
 - 새 대화는 Code 탭 왼쪽 목록의 `JungleWeek9-10` 묶음에 넣어 모아 둔다.
 - 공부 중에 나온 새 질문·채점 결과는 아티팩트 저장소에, 진도 숫자는 이 저장소에 남긴다.
@@ -50,5 +50,5 @@ Project 2의 `wait`/`exit`가 Project 1의 세마포어 위에서 동작하므�
 |---|---|---|---|---|
 | Week 7 | Project 1: Threads (복습) | 9주차 10/23(금) ~ 10/29(목) | [week07-threads.md](week07-threads.md) | 멈춤 (T0~T4 완료, T5·구현 D' 멈춤) |
 | Week 8 | Project 2: User Programs (복습) | 10주차 10/30(금) ~ 11/05(목) | [week08-user-programs.md](week08-user-programs.md) | 멈춤 (P0~P2 완료, P3부터. 11/3 VM·FS 개념 공부로 전환) |
-| Week 9~10 | Project 3: Virtual Memory (개념) | 11/3(화) ~ 11/4(수) | [week09-10-virtual-memory.md](week09-10-virtual-memory.md) | 진행 중 (V0 완료, V1 진행 중) |
+| Week 9~10 | Project 3: Virtual Memory (개념) | 11/3(화) ~ 11/4(수) | [week09-10-virtual-memory.md](week09-10-virtual-memory.md) | 진행 중 (V0·V1 완료, V2 1번 소제목부터) |
 | (추가) | Project 4: File System (개념) | 11/5(목) 저녁 전 | [project4-file-system.md](project4-file-system.md) | 시작 전 |
