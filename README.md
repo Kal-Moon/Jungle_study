@@ -7,14 +7,15 @@
 
 | 항목 | 내용 |
 |---|---|
-| 진행 중인 주차 | 10주차 (10/30~11/05) — Week 8 복습: Project 2 User Programs |
-| 진행 중인 메뉴 | P3 유저 포인터 검증 — 1번 소제목부터 (P0 11/1, P1 11/2, P2 11/3 완료) · (멈춤) 구현 D' Donation 혼자 다시 구현, T5 MLFQS 1번 소제목 |
+| 진행 중인 주차 | 9~10주차 남은 기간 (11/3~11/5 저녁 전) — Project 3 VM · Project 4 FS **개념 공부** (코드 구현 없음) |
+| 진행 중인 메뉴 | V0 큰 그림 — 1번 소제목부터 · (멈춤) P2 복습 P3 유저 포인터 검증, 구현 D' Donation 혼자 다시 구현, T5 MLFQS 1번 소제목 |
 | 관심 키워드 | 없음 |
 | 적용 중인 공부법 | 공부법 1 + 공부법 2 |
 
 ## 새 대화에서 이어 하기
 
-- 새 대화를 열고 "공부법 1, 2로 9주차 T0 큰 그림 시작하자"처럼 말하면 된다. Claude는 이 README → 해당 주차 파일 → 아티팩트의 그 메뉴 원고 순서로 읽는다.
+- 새 대화를 열고 "공부법 1, 2로 VM V0 이어 하자"처럼 말하면 된다. Claude는 이 README → 해당 주차 파일 → (있으면) 아티팩트의 그 메뉴 원고 순서로 읽는다.
+- VM·FS 개념 공부(11/3~)는 준비 자료 아티팩트가 없다. 설명은 명세(와 교수님 강의 PPT를 받으면 그것도) 기준으로 그날 새로 쓰고, 메뉴 표·진도는 각 주차 파일에 남긴다.
 - 새 대화는 Code 탭 왼쪽 목록의 `JungleWeek9-10` 묶음에 넣어 모아 둔다.
 - 공부 중에 나온 새 질문·채점 결과는 아티팩트 저장소에, 진도 숫자는 이 저장소에 남긴다.
 
@@ -41,7 +42,11 @@
 Project 2의 `wait`/`exit`가 Project 1의 세마포어 위에서 동작하므로 Threads를 먼저 한다.
 두 카테고리 모두 메뉴를 빠짐없이 순서대로 진행한다.
 
+2026-11-03: 남은 3일(11/3~11/5 저녁 전)은 원래 과제였던 Project 3 VM과 Project 4 FS를 **개념만** 공부하기로 바꿨다. P2 복습은 그동안 멈춘다.
+
 | 주차 | 주제 | 진행 기간 | 파일 | 상태 |
 |---|---|---|---|---|
 | Week 7 | Project 1: Threads (복습) | 9주차 10/23(금) ~ 10/29(목) | [week07-threads.md](week07-threads.md) | 멈춤 (T0~T4 완료, T5·구현 D' 멈춤) |
-| Week 8 | Project 2: User Programs (복습) | 10주차 10/30(금) ~ 11/05(목) | [week08-user-programs.md](week08-user-programs.md) | 진행 중 (10/30 처음부터 다시, P0~P2 완료, P3 다음) |
+| Week 8 | Project 2: User Programs (복습) | 10주차 10/30(금) ~ 11/05(목) | [week08-user-programs.md](week08-user-programs.md) | 멈춤 (P0~P2 완료, P3부터. 11/3 VM·FS 개념 공부로 전환) |
+| Week 9~10 | Project 3: Virtual Memory (개념) | 11/3(화) ~ 11/4(수) | [week09-10-virtual-memory.md](week09-10-virtual-memory.md) | 진행 중 (V0 1번 소제목부터) |
+| (추가) | Project 4: File System (개념) | 11/5(목) 저녁 전 | [project4-file-system.md](project4-file-system.md) | 시작 전 |
