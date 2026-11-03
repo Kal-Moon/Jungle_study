@@ -8,7 +8,7 @@
 | 항목 | 내용 |
 |---|---|
 | 진행 중인 주차 | 9~10주차 남은 기간 (11/3~11/5 저녁 전) — Project 3 VM · Project 4 FS **개념 공부** (코드 구현 없음) |
-| 진행 중인 메뉴 | V1 페이지의 종류와 Lazy Loading — 1번 소제목부터 (V0 완료) · (멈춤) P2 복습 P3 유저 포인터 검증, 구현 D' Donation 혼자 다시 구현, T5 MLFQS 1번 소제목 |
+| 진행 중인 메뉴 | V1 페이지의 종류와 Lazy Loading — 원고 보여 줌, 1번 소제목부터 읽기 (V0 완료) · (멈춤) P2 복습 P3 유저 포인터 검증, 구현 D' Donation 혼자 다시 구현, T5 MLFQS 1번 소제목 |
 | 관심 키워드 | 없음 |
 | 적용 중인 공부법 | 공부법 1 + 공부법 2 |
 
@@ -21,7 +21,7 @@
 
 ## 준비 자료
 
-- [VM·FS 개념 노트](https://claude.ai/artifact/6CnQXicJwAHkiFhGEvi1D8) (Claude 아티팩트, 비공개, 2026-11-03에 만듦) — VM·FS 진행 규칙(`menus/guide.md`), 메뉴별 설명 원고(`menus/v0.md` ~), 권영진 교수님 강의 PPT(`refs/OS_review.pdf`). 아래 Pintos 복습 노트는 Project 1·2 복습용.
+- [VM·FS 개념 노트](https://claude.ai/artifact/6CnQXicJwAHkiFhGEvi1D8) (Claude 아티팩트, 비공개, 2026-11-03에 만듦) — VM·FS 진행 규칙(`menus/guide.md`), 메뉴별 설명 원고(`menus/v0.md`, `menus/v1.md` ~), 권영진 교수님 강의 PPT(`refs/OS_review.pdf`). 아래 Pintos 복습 노트는 Project 1·2 복습용.
 
 - [Pintos 복습 노트](https://claude.ai/artifact/2thcCz6zE3UcY47im2n23T) (Claude 아티팩트, 비공개, 2026-10-22에 만듦) — 메뉴마다 자료 링크, 설명, 확인 문제, 예상 질문, 종합 문제, 나중에 볼 목록 후보.
 - Claude가 공부를 시작할 때: 이 아티팩트에서 해당 메뉴 원고만 `path`로 읽는다 — `menus/t0.md` ~ `menus/t5.md`, `menus/p0.md` ~ `menus/p7.md`, 사용법 `menus/guide.md`, 약점 지도 `menus/weak.md`, 최종 점검 퀴즈 `menus/final.md`.
@@ -50,5 +50,5 @@ Project 2의 `wait`/`exit`가 Project 1의 세마포어 위에서 동작하므�
 |---|---|---|---|---|
 | Week 7 | Project 1: Threads (복습) | 9주차 10/23(금) ~ 10/29(목) | [week07-threads.md](week07-threads.md) | 멈춤 (T0~T4 완료, T5·구현 D' 멈춤) |
 | Week 8 | Project 2: User Programs (복습) | 10주차 10/30(금) ~ 11/05(목) | [week08-user-programs.md](week08-user-programs.md) | 멈춤 (P0~P2 완료, P3부터. 11/3 VM·FS 개념 공부로 전환) |
-| Week 9~10 | Project 3: Virtual Memory (개념) | 11/3(화) ~ 11/4(수) | [week09-10-virtual-memory.md](week09-10-virtual-memory.md) | 진행 중 (V0 완료, V1 1번 소제목부터) |
+| Week 9~10 | Project 3: Virtual Memory (개념) | 11/3(화) ~ 11/4(수) | [week09-10-virtual-memory.md](week09-10-virtual-memory.md) | 진행 중 (V0 완료, V1 진행 중) |
 | (추가) | Project 4: File System (개념) | 11/5(목) 저녁 전 | [project4-file-system.md](project4-file-system.md) | 시작 전 |
