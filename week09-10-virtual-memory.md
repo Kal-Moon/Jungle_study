@@ -11,7 +11,19 @@
 
 - KAIST PintOS Project 3 명세: https://casys-kaist.github.io/pintos-kaist/project3/introduction.html
 - 권영진 교수님 Pintos Lab slides (Pintos_1~4.pdf) — 정글 LMS 링크
-- 교수님 강의 PPT — 사용자가 가지고 있음. 받으면 메뉴마다 참고 자료로 쓴다.
+- 권영진 교수님 강의 PPT `OS_review.pdf` (67쪽) — 2026-11-03 사용자가 대화에 올림. 파일은 이 저장소에 올리지 않는다.
+  - 쪽 번호는 PDF 뷰어 기준(슬라이드 아래 번호와 44쪽 이후로 어긋남).
+  - 슬라이드의 빈칸 `(   )`은 확인 문제로 쓴다.
+
+| 메뉴 | PPT 쪽 | 내용 |
+|---|---|---|
+| V0 | 13~15, 17~18, 50 | 프로세스가 추상화하는 것, 주소 공간, Level of indirection, 페이징 주소 변환(V 비트·TLB), "페이지 테이블은 어디에? OS·HW의 역할은?", 프로세스마다 다른 페이지 테이블 |
+| V1 | 19 | Demand paging: 멈춤 → 칸 받기 → 0으로 채우기 → 페이지 테이블에 연결 → 재개 |
+| V2 | 16, 20~21, 64 | MMU와 fault handler, 폴트 전·후 그림, 디스크 읽기(DMA·인터럽트), Paging review 6단계(restart instruction) |
+| V2·V4 | 45 | PTE 비트: Present, R/W, U/S, Accessed, Dirty |
+| V3 | 22, 28 | 파일 = 저장 장치의 추상화(가상 메모리와 비교), 페이지 캐시 |
+| V4 | 64~66 | 스왑 디스크에서 가져오기, 교체 정책(victim), 자습 범위: Optimal·LRU·Clock·Belady's anomaly |
+| (범위 밖) | 56~63 | 스케줄링 — Project 1 내용 |
 - 정글 일정(참고): Pintos 기초 특강 VM(금 13:00), 운영체제 특강 (2)(VM 2주차 월 13:30~15:30), 퀴즈(화 13:00~14:00), 주간 결과 발표(목 13:00)
 - 준비 자료 아티팩트 없음. 설명은 명세 기준으로 그날 새로 쓴다.
 

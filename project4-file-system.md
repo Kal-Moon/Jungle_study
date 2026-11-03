@@ -9,7 +9,15 @@
 
 - KAIST PintOS Project 4 명세: https://casys-kaist.github.io/pintos-kaist/project4/introduction.html
 - 권영진 교수님 Pintos Lab slides (Pintos_1~4.pdf) — 정글 LMS 링크
-- 교수님 강의 PPT — 사용자가 가지고 있음. 받으면 메뉴마다 참고 자료로 쓴다.
+- 권영진 교수님 강의 PPT `OS_review.pdf` (67쪽) — 2026-11-03 사용자가 대화에 올림. 파일은 이 저장소에 올리지 않는다. 쪽 번호는 PDF 뷰어 기준.
+
+| 메뉴 | PPT 쪽 | 내용 |
+|---|---|---|
+| F0 | 22~23, 26~27 | 파일 = 저장 장치의 추상화, <파일 이름·데이터·메타데이터> → 블록 묶음, 생각해 볼 질문, 저장 스택(VFS ~ 디바이스 드라이버) |
+| F1 | 24~25 | Indexed allocation(바깥 인덱스 → 인덱스 표 → 물리 블록), inode 구조(direct·single/double/triple indirect). KAIST는 FAT 방식이라 둘을 비교한다 |
+| F2 | 22 | 경로 이름(path + filename) — PPT에는 짧게만 나옴, 명세 위주 |
+| F3 | 28~29 | 페이지 캐시, 두 군데 복사본의 문제(무엇이 최신인가, 언제 저장되나) |
+| (F3 뒤, 시간 남으면) | 30~34 | 크래시 일관성: 원자성·지속성, 롤백 로깅, `fsync` 순서 |
 - 준비 자료 아티팩트 없음. 설명은 명세 기준으로 그날 새로 쓴다.
 
 ### 자료 분석
