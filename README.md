@@ -15,11 +15,13 @@
 ## 새 대화에서 이어 하기
 
 - 새 대화를 열고 "공부법 1, 2로 VM V0 이어 하자"처럼 말하면 된다. Claude는 이 README → 해당 주차 파일 → (있으면) 아티팩트의 그 메뉴 원고 순서로 읽는다.
-- VM·FS 개념 공부(11/3~)는 준비 자료 아티팩트가 없다. 설명은 명세와 교수님 강의 PPT(`OS_review.pdf`, 사용자가 대화에 올림 — 새 대화에서도 다시 올려 줘야 함, 메뉴별 쪽 번호는 각 파일 「자료」 표) 기준으로 그날 새로 쓰고, 메뉴 표·진도는 각 주차 파일에 남긴다.
+- **VM·FS 개념 공부(11/3~)**: 새 대화에서 "공부법 1, 2로 VM V0 이어 하자"(메뉴만 바꿔서)라고 말하면 된다. Claude는 이 README → `week09-10-virtual-memory.md`(FS면 `project4-file-system.md`)의 「다음 위치」 → [VM·FS 개념 노트](https://claude.ai/artifact/6CnQXicJwAHkiFhGEvi1D8)의 `menus/guide.md`(진행 규칙) → `menus/<메뉴>.md`(설명 원고, 없으면 새로 써서 추가) → `refs/OS_review.pdf`(교수님 PPT, 그 메뉴 쪽만) 순서로 읽는다. PDF를 다시 올릴 필요 없다.
 - 새 대화는 Code 탭 왼쪽 목록의 `JungleWeek9-10` 묶음에 넣어 모아 둔다.
 - 공부 중에 나온 새 질문·채점 결과는 아티팩트 저장소에, 진도 숫자는 이 저장소에 남긴다.
 
 ## 준비 자료
+
+- [VM·FS 개념 노트](https://claude.ai/artifact/6CnQXicJwAHkiFhGEvi1D8) (Claude 아티팩트, 비공개, 2026-11-03에 만듦) — VM·FS 진행 규칙(`menus/guide.md`), 메뉴별 설명 원고(`menus/v0.md` ~), 권영진 교수님 강의 PPT(`refs/OS_review.pdf`). 아래 Pintos 복습 노트는 Project 1·2 복습용.
 
 - [Pintos 복습 노트](https://claude.ai/artifact/2thcCz6zE3UcY47im2n23T) (Claude 아티팩트, 비공개, 2026-10-22에 만듦) — 메뉴마다 자료 링크, 설명, 확인 문제, 예상 질문, 종합 문제, 나중에 볼 목록 후보.
 - Claude가 공부를 시작할 때: 이 아티팩트에서 해당 메뉴 원고만 `path`로 읽는다 — `menus/t0.md` ~ `menus/t5.md`, `menus/p0.md` ~ `menus/p7.md`, 사용법 `menus/guide.md`, 약점 지도 `menus/weak.md`, 최종 점검 퀴즈 `menus/final.md`.

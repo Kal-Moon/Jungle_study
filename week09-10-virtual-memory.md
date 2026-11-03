@@ -11,7 +11,7 @@
 
 - KAIST PintOS Project 3 명세: https://casys-kaist.github.io/pintos-kaist/project3/introduction.html
 - 권영진 교수님 Pintos Lab slides (Pintos_1~4.pdf) — 정글 LMS 링크
-- 권영진 교수님 강의 PPT `OS_review.pdf` (67쪽) — 2026-11-03 사용자가 대화에 올림. 파일은 이 저장소에 올리지 않는다.
+- 권영진 교수님 강의 PPT `OS_review.pdf` (67쪽) — 2026-11-03 사용자가 대화에 올림. 저장소에는 올리지 않고 [VM·FS 개념 노트](https://claude.ai/artifact/6CnQXicJwAHkiFhGEvi1D8)의 `refs/OS_review.pdf`에 둔다.
   - 쪽 번호는 PDF 뷰어 기준(슬라이드 아래 번호와 44쪽 이후로 어긋남).
   - 슬라이드의 빈칸 `(   )`은 확인 문제로 쓴다.
 
@@ -26,7 +26,7 @@
 | (범위 밖) | 56~63 | 스케줄링 — Project 1 내용 |
 
 - 정글 일정(참고): Pintos 기초 특강 VM(금 13:00), 운영체제 특강 (2)(VM 2주차 월 13:30~15:30), 퀴즈(화 13:00~14:00), 주간 결과 발표(목 13:00)
-- 준비 자료 아티팩트 없음. 설명은 명세 기준으로 그날 새로 쓴다.
+- 준비 자료: [VM·FS 개념 노트](https://claude.ai/artifact/6CnQXicJwAHkiFhGEvi1D8) — 진행 규칙 `menus/guide.md`, 메뉴 원고 `menus/<메뉴>.md`(그날 새로 쓰고 다 쓰면 여기에 추가).
 
 ### 자료 분석: 교육 기관이 원하는 것
 
