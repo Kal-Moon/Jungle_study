@@ -8,7 +8,7 @@
 | 항목 | 내용 |
 |---|---|
 | 진행 중인 주차 | **11~12주차 (11/6~11/19) AI 함께하기** — 미니 리액트·레디스·DBMS 구현 (구현은 Claude, 사용자는 설계 이해) |
-| 진행 중인 메뉴 | **A. 미니 리액트 R0 큰 그림** — 4·5번(VDOM 필요성) 실습 페이지로 확인 중, 다음 6번 · (지난 주차) FS F0 큰 그림 — 원고 `menus/f0.md` 작성 완료, 1번 소제목부터 읽는 중 (VM V0~V4 완료) · (멈춤) P2 복습 P3 유저 포인터 검증, 구현 D' Donation 혼자 다시 구현, T5 MLFQS 1번 소제목 |
+| 진행 중인 메뉴 | **A. 미니 리액트 R1** (R0 큰 그림 완료) — DOM → VDOM 변환부터, 팀 레포 주소 받으면 구현 시작 · (지난 주차) FS F0 큰 그림 — 원고 `menus/f0.md` 작성 완료, 1번 소제목부터 읽는 중 (VM V0~V4 완료) · (멈춤) P2 복습 P3 유저 포인터 검증, 구현 D' Donation 혼자 다시 구현, T5 MLFQS 1번 소제목 |
 | 관심 키워드 | 없음 |
 | 적용 중인 공부법 | 공부법 1 + 2 + 3 (11~12주차: 확인 문제 없음, 구현 항목마다 공부법 3 평가) |
 
@@ -52,4 +52,4 @@ Project 2의 `wait`/`exit`가 Project 1의 세마포어 위에서 동작하므�
 | Week 8 | Project 2: User Programs (복습) | 10주차 10/30(금) ~ 11/05(목) | [week08-user-programs.md](week08-user-programs.md) | 멈춤 (P0~P2 완료, P3부터. 11/3 VM·FS 개념 공부로 전환) |
 | Week 9~10 | Project 3: Virtual Memory (개념) | 11/3(화) ~ 11/4(수) | [week09-10-virtual-memory.md](week09-10-virtual-memory.md) | ✅ 완료 (V0~V4) |
 | (추가) | Project 4: File System (개념) | 11/5(목) 저녁 전 | [project4-file-system.md](project4-file-system.md) | 진행 중 (F0) |
-| Week 11~12 | AI 함께하기: 미니 리액트 · 미니 레디스 · 미니 DBMS (팀 구현) | 11/6(금) ~ 11/19(목) | [week11-12-ai-together.md](week11-12-ai-together.md) | 진행 중 (A. 미니 리액트 R0) |
+| Week 11~12 | AI 함께하기: 미니 리액트 · 미니 레디스 · 미니 DBMS (팀 구현) | 11/6(금) ~ 11/19(목) | [week11-12-ai-together.md](week11-12-ai-together.md) · 학습 노트 [week11-12-react-r0-notes.md](week11-12-react-r0-notes.md) | 진행 중 (R0 완료, 다음 R1) |
