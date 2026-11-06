@@ -104,7 +104,13 @@
 - 이어서 질문 12개(VDOM은 데이터인가, Diff와 Patch 분리, Diff 비교 순서, Phase 1의 새 요소, History는 덮어쓰기인가, Phase 2 쉬운 설명, History vs Hooks, useEffect, 강화 게임 비유, effect는 중간인가). 질문 16개 전체 목록과 정리는 학습 노트 참고.
 - 사용자가 GPT와 정리한 학습 기록을 받아 확인: 내용 맞음. 보충 1개 — VDOM을 "HTML을 읽어 채운다"는 Phase 1 이야기이고, Phase 2에서는 컴포넌트 함수가 `h()`로 직접 만든다(노트 4절에 반영).
 - **R0 완료.** (확인 문제 없음 — 진행 방식대로)
-- **다음 위치: R1** — GPT 정리의 추천 순서(DOM 접근 → nodeType → DOM→VDOM 변환 → `h()`로 직접 생성 → `vdom.js` 구조)로 설명 후 구현. 구현 전에 팀 레포 주소 필요.
+- (이후) 팀 레포 `eunah08/week-11` 확인. 진행 방식 변경: **Phase 1을 먼저 한 번에 구현 → R1~R4를 하나씩 설명·평가**. 구현은 개인 브랜치 `Kal-Moon`에(main·Develop은 팀 코드 리뷰 후 결정).
+- **Phase 1 구현 완료** (R1~R4 코드, 아직 설명·평가 전이라 체크하지 않음)
+  - `src/vdom/vdom.js`(변환·생성), `diff.js`(5가지 케이스 + key, LIS로 최소 이동), `patch.js`(path를 먼저 노드로 찾고 고침), `history.js`(복사·freeze로 버전 저장), `src/main.js`(버튼, MutationObserver, 변경 기록), 샘플 HTML "오늘의 할 일".
+  - 테스트 영역 = 미리보기(contenteditable) + HTML 코드 편집창. 실행은 ES module + 로컬 서버.
+  - 단위 테스트 43개(무작위 트리 500쌍 포함) 통과, 브라우저 기능 테스트(Patch·뒤로·앞으로·변경 없음·뒤로 간 뒤 새 Patch) 통과.
+  - **push 막힘**: Claude GitHub App에 `eunah08/week-11` 쓰기 권한이 없어 403. bundle·zip 파일로 전달함.
+- **다음 위치: R1 설명** — `vdom.js`부터 R1→R4 순서로 설명 → 질문 → 평가(4절에 기록).
 
 ## 4. 평가 기록 (공부법 3)
 
