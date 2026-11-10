@@ -19,8 +19,13 @@ const CHILD_RULES = [
     matches: (child) => typeof child === 'number',
     normalize: (number, normalizedChildren) => pushTextVNode(String(number), normalizedChildren),
   },
-  { matches: isVNode, normalize: pushVNode },
+  { matches: isCheckedVNode, normalize: pushVNode },
 ];
+
+// createElement가 만든 요소 VNode. 자식까지 이미 검사했으므로 부모에 넣을 때 다시 끝까지 보지 않는다.
+// (다시 보면 노드마다 조상 수만큼 검사해 중첩이 깊을 때 O(N²)이 된다)
+// WeakSet이라 VNode가 버려지면 함께 사라진다.
+const createdElementVNodes = new WeakSet();
 
 /**
  * 요소 Virtual DOM을 만든다. (Phase 2 문서 5.1)
@@ -42,12 +47,21 @@ export function createElement(tag, props, ...children) {
     return callChildComponent(tag, { ...props, children: normalizedChildren });
   }
 
-  return {
+  const vnode = {
     type: NODE_TYPES.ELEMENT,
     tag: tag.toLowerCase(),
     props: copyElementProps(props),
     children: normalizedChildren,
   };
+
+  createdElementVNodes.add(vnode);
+
+  return vnode;
+}
+
+// 직접 만든 VNode 객체는 지금처럼 자식까지 끝까지 검사한다.
+function isCheckedVNode(child) {
+  return createdElementVNodes.has(child) || isVNode(child);
 }
 
 // 자식은 children 인자로만 받는다. 자식 컴포넌트가 받은 props를 그대로 넘겨도

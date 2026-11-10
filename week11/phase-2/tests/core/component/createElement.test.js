@@ -100,6 +100,27 @@ test('createElement : script·style 태그, 잘못된 props·자식은 TypeError
   assertThrows(() => createElement('p', null, () => {}), TypeError, '자식이 올바르지 않습니다');
 });
 
+test('createElement : 직접 만든 VNode는 자식까지 검사하고, createElement로 만든 VNode는 그대로 넣는다', () => {
+  const badNested = { type: 'element', tag: 'div', props: {}, children: [{ text: 'x' }] };
+  const created = createElement('ul', null, createElement('li', null, 'a'));
+
+  assertThrows(() => createElement('p', null, badNested), TypeError, '자식이 올바르지 않습니다');
+  assertTrue(createElement('div', null, created).children[0] === created);
+});
+
+test('createElement : 10,000겹 중첩도 깊이에 비례하는 시간 안에 만든다', () => {
+  const startedAt = performance.now();
+  let vnode = createElement('span', null, 'leaf');
+
+  for (let depth = 0; depth < 10000; depth++) {
+    vnode = createElement('div', null, vnode);
+  }
+
+  const elapsed = performance.now() - startedAt;
+
+  assertTrue(elapsed < 200, `너무 느림: ${Math.round(elapsed)}ms`);
+});
+
 test('createElement : 태그 이름에 공백·따옴표 등이 있거나 비어 있으면 TypeError', () => {
   assertThrows(() => createElement('div onclick', null), TypeError, 'tag가 올바르지 않습니다');
   assertThrows(() => createElement('', null), TypeError, 'tag가 올바르지 않습니다');

@@ -115,6 +115,17 @@ test('diff : 입력 VNode를 수정하지 않는다', () => {
   assertEqual(nextVNode, nextCopy);
 });
 
+test('diff : 같은 VNode 객체를 다시 쓰면 아래로 내려가지 않고 빈 배열', () => {
+  const sharedList = element('ul', {}, [element('li', {}, [text('a')])]);
+  const previousVNode = element('div', { id: 'a' }, [sharedList]);
+  const nextVNode = element('div', { id: 'b' }, [sharedList]);
+
+  assertEqual(diff(previousVNode, nextVNode), [
+    { type: PATCH_TYPES.UPDATE_PROPS, path: [], set: { id: 'b' }, remove: [] },
+  ]);
+  assertEqual(diff(sharedList, sharedList), []);
+});
+
 test('diff : VNode가 아니면 TypeError', () => {
   assertThrows(() => diff(null, text('a')), TypeError, '[diff] VNode가 필요합니다');
   assertThrows(() => diff(text('a'), { type: 'element' }), TypeError, '[diff] VNode가 필요합니다');

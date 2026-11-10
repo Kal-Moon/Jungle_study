@@ -30,6 +30,12 @@ export function diff(previousVNode, nextVNode) {
 
 // 입력 검증은 공개 함수 가드에서만 한다. (11장) 자식은 검증된 VNode라고 믿는다.
 function diffNode(previousVNode, nextVNode, path) {
+  // 같은 객체면 아래까지 볼 필요가 없다. (입력 VNode는 수정하지 않으므로 내용도 같다)
+  // useMemo로 다시 쓴 VNode를 비교할 때 목록 전체를 내려가지 않게 한다.
+  if (previousVNode === nextVNode) {
+    return [];
+  }
+
   if (isReplaceNeeded(previousVNode, nextVNode)) {
     return [createReplacePatch(nextVNode, path)];
   }

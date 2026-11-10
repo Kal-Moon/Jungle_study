@@ -4,7 +4,7 @@
   그래서 Phase 1 코드(`vdom`·`diff`·`patch`, Phase 1 데모)는 **팀 병합본**이고, 내 Phase 1은 [../phase-1](../phase-1/)에 있다.
 - **기간:** 2026-11-10
 - **범위:** 팀 협약 `docs/미니리액트_Phase2.md` (함수형 컴포넌트, State, Hooks)
-- **팀 레포 커밋:** Kal-Moon 브랜치 `05d063c` ~ `c382555` (6개)
+- **팀 레포 커밋:** Kal-Moon 브랜치 `05d063c` ~ `c382555` (구현 6개), `9d3d63e` ~ `76e9d30` (최적화 4개)
 - 이 폴더는 병합본 위에서 고친 결과를 **실행할 수 있는 상태 그대로** 올린 것이다. 아래 표가 내가 만들거나 고친 파일이다.
 
 ## 내가 만들거나 고친 파일
@@ -13,9 +13,9 @@
 |---|---|
 | 코어 (새로 구현) | `src/core/component/createElement.js`, `FunctionComponent.js`, `hookContext.js`, `index.js` |
 | Hook (새로 구현) | `src/core/hooks/useState.js`, `useEffect.js`, `useMemo.js`, `hookSlot.js`, `dependencies.js` |
-| Phase 1 쪽 수정 | `src/core/vdom/isIgnoredNode.js`(`isIgnoredText`·`isIgnoredTag` 공개), `src/core/vdom/index.js`, `src/core/patch/index.js`(새 진입점) |
+| Phase 1 쪽 수정 | `src/core/vdom/isIgnoredNode.js`(`isIgnoredText`·`isIgnoredTag` 공개), `src/core/vdom/index.js`, `src/core/patch/index.js`(새 진입점), `src/core/diff/diff.js`(같은 객체 건너뛰기 한 줄, 최적화 1) |
 | 데모 | `src/demos/phase_two/` 전체 (`app.js`, `todoState.js`, `components/` 5개, `styles.css`), `index.html`, `src/main.js` |
-| 테스트 | `tests/core/component/`, `tests/core/hooks/`, `tests/demos/phase_two/`, `tests/index.html`, `tests/stress/stress.js`(Phase 2 시나리오) |
+| 테스트 | `tests/core/component/`, `tests/core/hooks/`, `tests/core/diff/diff.test.js`(최적화 1), `tests/demos/phase_two/`, `tests/index.html`, `tests/stress/stress.js`(Phase 2 시나리오) |
 | 문서 | `docs/implementation_notes.md`의 Phase 2 부분 |
 
 그 밖의 파일은 팀 병합본 그대로다.
@@ -62,12 +62,21 @@
 
 측정 중 배운 것: 문서에 붙지 않은 체크박스는 `click()`해도 change 이벤트가 나지 않는다. 그래서 측정용 container를 화면 밖에 붙였다.
 
-## 다음에 할 최적화 후보
+## 최적화 (관점: 저사양 PC에서도 한 번 갱신 16ms 안)
 
-1. `createElement`의 VNode 깊은 검사 — 중첩 깊이에 대해 O(N²)
-2. 입력 한 글자마다 목록 전체를 다시 만들고 diff — 저사양 PC에서 1,000개 이상이면 렉
-3. 연속 상태 변경을 모으는 Batching 없음
-4. `key`가 없어 맨 앞을 지우면 뒤 항목 N개가 전부 바뀜
+내 PC 브라우저에서 할 일 개수를 늘려 가며 재고, 하나 고칠 때마다 다시 쟀다. 협약 기본 규칙(즉시 `update()`, 인덱스 비교)은 그대로 두었다.
+
+| # | 원인 | 고친 방법 | 결과 (할 일 1,000개 / 5,000개) |
+|---|---|---|---|
+| 1 | 입력창 글자만 바뀌어도 목록 전체를 다시 만들고 diff | 목록 VNode를 `useMemo([todos, filter])`로 다시 쓰고, `diff`는 이전과 같은 객체면 내려가지 않음 | 한 글자 입력 25ms → 약 3ms / 110ms → 약 20ms |
+| 2 | `createElement`가 자식을 넣을 때마다 아래를 끝까지 다시 검사 (깊이에 대해 O(N²)) | 자기가 만든 VNode를 `WeakSet`으로 표시해 건너뜀 (직접 만든 VNode 객체는 그대로 끝까지 검사) | 3,000겹 생성 700ms → 14ms, 10,000겹도 스택 초과 없이 생성 |
+| 3 | 토글 하나에 바뀌지 않은 999줄도 다시 만듦 | 할 일 객체를 열쇠로 항목 VNode를 `WeakMap`에 기억 (불변 갱신이라 그대로인 할 일은 같은 객체) | 토글 25ms → 8ms / 110ms → 37ms |
+
+추가(제출)도 70ms → 17ms / 334ms → 79ms로 함께 줄었다.
+
+- 배운 것 : "같은 객체면 같은 내용"이 성립하려면 VNode와 상태를 **고치지 않고 새로 만드는 것(불변)**이 전제다. 그래서 메모이제이션이 안전하다.
+- 남은 비용 : 갱신마다 루트에서 VNode 형식을 끝까지 검사(협약의 입력 검사)해서 5,000개 입력은 아직 약 20ms.
+- **차별점 후보로 미룸** : Batching(추가할 때 렌더링 2번), `key`(맨 앞 삭제 1,000개 79ms — 뒤 항목 전부 변경)
 
 ## 협약에 없어 내가 정한 것 (팀 확인용)
 
@@ -87,4 +96,4 @@
 ## 알려진 한계
 
 - `key` 미지원, Batching 없음, 상태 되돌리기 없음, 중첩 깊이 한계 — 자세한 내용은 `docs/implementation_notes.md`
-- `npm test`(node --test)는 팀 병합본에서 원래 실패한다(테스트가 브라우저용). 브라우저 `tests/index.html` 기준 130개 통과.
+- `npm test`(node --test)는 팀 병합본에서 원래 실패한다(테스트가 브라우저용). 브라우저 `tests/index.html` 기준 134개 통과.

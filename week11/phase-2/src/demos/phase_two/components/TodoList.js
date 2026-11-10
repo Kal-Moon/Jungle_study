@@ -19,8 +19,21 @@ export function TodoList({ todos, onListEvent }) {
     createElement(
       'ul',
       { class: 'todo-list', onClick: onListEvent, onChange: onListEvent },
-      todos.map((todo) => createElement(TodoItem, { todo })),
+      todos.map(findTodoItemVNode),
     ),
     isEmpty && createElement('p', { class: 'todo-empty' }, '보여 줄 할 일이 없습니다'),
   );
+}
+
+// 할 일 객체 → 그 객체로 만든 항목 VNode. todoState는 바뀐 항목만 새 객체로 만들므로,
+// 그대로인 항목은 같은 VNode를 다시 써서 diff가 그 줄 안으로 내려가지 않는다.
+// TodoItem은 todo만 보고 그리므로 결과가 같다. WeakMap이라 지워진 할 일은 함께 사라진다.
+const itemVNodeByTodo = new WeakMap();
+
+function findTodoItemVNode(todo) {
+  if (!itemVNodeByTodo.has(todo)) {
+    itemVNodeByTodo.set(todo, createElement(TodoItem, { todo }));
+  }
+
+  return itemVNodeByTodo.get(todo);
 }

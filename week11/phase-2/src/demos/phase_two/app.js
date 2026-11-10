@@ -69,8 +69,9 @@ export function TodoApp({ storage }) {
   // 상태 변경 함수는 렌더링마다 같으므로 핸들러도 한 번만 만든다. 그래서 갱신마다 리스너를 다시 달지 않는다.
   const handlers = useMemo(() => createHandlers(setters), []);
   const handleSubmit = useMemo(() => createSubmitHandler(draft, setters), [draft]);
-  const visibleTodos = useMemo(() => filterTodos(todos, filter), [todos, filter]);
   const remainingCount = useMemo(() => countRemaining(todos), [todos]);
+  // 입력창 글자만 바뀔 때는 목록 VNode를 그대로 써서, diff가 목록 안으로 내려가지 않게 한다.
+  const listVNode = useMemo(() => createListVNode(todos, filter, handlers), [todos, filter]);
 
   useEffect(() => saveTodos(storage, todos), [storage, todos]);
   useEffect(() => showRemainingInTitle(remainingCount), [remainingCount]);
@@ -80,7 +81,7 @@ export function TodoApp({ storage }) {
     draft,
     errorMessage,
     filter,
-    visibleTodos,
+    listVNode,
     remainingCount,
     totalCount: todos.length,
     handlers: { ...handlers, onSubmit: handleSubmit },
@@ -103,13 +104,20 @@ function createTodoAppVNode(view) {
     }),
     createElement('p', { class: 'todo-error', role: 'alert' }, view.errorMessage),
     createElement(FilterBar, { filter: view.filter, onFilterClick: handlers.onFilterClick }),
-    createElement(TodoList, { todos: view.visibleTodos, onListEvent: handlers.onListEvent }),
+    view.listVNode,
     createElement(TodoSummary, {
       remainingCount: view.remainingCount,
       totalCount: view.totalCount,
       onClearDone: handlers.onClearDone,
     }),
   );
+}
+
+// 필터를 적용한 목록 VNode. handlers는 한 번만 만들어지므로 의존성에 넣지 않는다.
+function createListVNode(todos, filter, handlers) {
+  const visibleTodos = filterTodos(todos, filter);
+
+  return createElement(TodoList, { todos: visibleTodos, onListEvent: handlers.onListEvent });
 }
 
 function createHandlers(setters) {
