@@ -108,6 +108,14 @@ test('createElement : 직접 만든 VNode는 자식까지 검사하고, createEl
   assertTrue(createElement('div', null, created).children[0] === created);
 });
 
+test('createElement : 태그 이름을 기억해도 잘못된 이름과 script는 매번 막는다', () => {
+  for (let round = 0; round < 2; round++) {
+    assertEqual(createElement('li', null).tag, 'li');
+    assertThrows(() => createElement('li x', null), TypeError, 'tag가 올바르지 않습니다');
+    assertThrows(() => createElement('script', null), TypeError, 'script, style');
+  }
+});
+
 test('createElement : 10,000겹 중첩도 깊이에 비례하는 시간 안에 만든다', () => {
   const startedAt = performance.now();
   let vnode = createElement('span', null, 'leaf');

@@ -6,6 +6,10 @@ const BAD_PROPS_MESSAGE = '[createElement] props는 객체나 null이어야 합�
 const BAD_CHILD_MESSAGE = '[createElement] 자식이 올바르지 않습니다';
 // 태그 이름으로 받을 글자. 공백·따옴표가 섞인 이름은 render의 DOMException 대신 여기서 TypeError로 막는다.
 const TAG_NAME_PATTERN = /^[a-z][a-z0-9-]*$/i;
+// 정규식을 통과한 태그 이름. 문자열은 바뀌지 않으므로 한 번 통과한 이름은 다시 검사하지 않는다.
+// 이름을 끝없이 만들어 넣어도 메모리가 계속 늘지 않게 기억할 개수에 한도를 둔다. (넘으면 매번 검사)
+const MAX_REMEMBERED_TAG_NAMES = 1000;
+const validTagNames = new Set();
 const IGNORED_TAG_MESSAGE = '[createElement] script, style 태그는 만들 수 없습니다';
 
 // 자식 값의 종류별 규칙. 위에서부터 처음 맞는(matches) 규칙의 normalize로 처리한다.
@@ -73,9 +77,7 @@ function copyElementProps(props) {
 }
 
 function assertValidArguments(tag, props) {
-  const isValidTagName = typeof tag === 'string' && TAG_NAME_PATTERN.test(tag);
-
-  if (!isValidTagName && typeof tag !== 'function') {
+  if (!isValidTagName(tag) && typeof tag !== 'function') {
     throw new TypeError(BAD_TAG_MESSAGE);
   }
 
@@ -90,6 +92,21 @@ function assertValidArguments(tag, props) {
   }
 }
 
+function isValidTagName(tag) {
+  if (validTagNames.has(tag)) {
+    return true;
+  }
+
+  const isValid = typeof tag === 'string' && TAG_NAME_PATTERN.test(tag);
+
+  if (isValid && validTagNames.size < MAX_REMEMBERED_TAG_NAMES) {
+    validTagNames.add(tag);
+  }
+
+  return isValid;
+}
+
+// script·style 차단은 기억과 상관없이 매번 검사한다.
 // applyPatches는 script, style DOM을 건너뛰고 세므로 만들면 path가 어긋난다. 실행되는 script도 막는다.
 function assertAllowedTag(tagName) {
   if (isIgnoredTag(tagName)) {
